@@ -1,2 +1,4 @@
 # patient-service-api
-Test Radek
+Patryk <3 SGGW
+kurde
+Lukasz
