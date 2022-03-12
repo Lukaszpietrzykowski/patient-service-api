@@ -16,7 +16,6 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@Setter
 public class AddressEntity {
 
     @Id
