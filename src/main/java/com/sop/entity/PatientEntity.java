@@ -5,7 +5,6 @@ import com.sop.enums.PriorityEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -30,7 +29,7 @@ public class PatientEntity {
     private String lastName;
     private String pesel;
     private long age;
-    private LocalDateTime date;
+    private LocalDateTime birthDate;
 
     @Enumerated(EnumType.STRING)
     private GenderEnum gender;
