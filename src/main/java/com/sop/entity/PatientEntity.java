@@ -35,5 +35,6 @@ public class PatientEntity {
     private LocalDateTime registrationDate;
 
     @ManyToOne
+    @JoinColumn(name = "departmentId", nullable = false)
     DepartmentEntity department;
 }
