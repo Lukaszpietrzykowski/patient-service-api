@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,7 +23,11 @@ public class DepartmentEntity {
     private String name;
 
     @OneToMany(mappedBy = "department")
-    private List<PatientEntity> patients;
+    private List<PatientEntity> patients = new ArrayList<>() ;
+
+    @ManyToOne
+    @JoinColumn(name = "hospital_id")
+    private HospitalEntity hospital;
 
     private long availableBeds;
 }
