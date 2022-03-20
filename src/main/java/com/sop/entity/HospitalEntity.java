@@ -26,9 +26,8 @@ public class HospitalEntity {
     private String name;
 
     @OneToOne
-    @JoinColumn(name = "ADDRESS", referencedColumnName = "ID")
+    @JoinColumn(name = "address_id")
     private AddressEntity address;
-
 
     private Long departments;
 
