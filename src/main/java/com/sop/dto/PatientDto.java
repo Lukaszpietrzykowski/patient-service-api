@@ -1,5 +1,6 @@
 package com.sop.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sop.entity.PatientEntity;
 import com.sop.enums.GenderEnum;
 import com.sop.enums.PriorityEnum;
@@ -9,6 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,7 +23,7 @@ public class PatientDto {
     private String lastName;
     private String pesel;
     private LocalDateTime birthDate;
-    private GenderEnum gender;
+   private GenderEnum gender;
     private PriorityEnum priority;
     private LocalDateTime dischargeDate;
     private LocalDateTime registrationDate;

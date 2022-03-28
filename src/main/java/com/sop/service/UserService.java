@@ -1,6 +1,7 @@
 package com.sop.service;
 
 import com.sop.dto.UserDto;
+import com.sop.entity.PatientEntity;
 import com.sop.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,4 +20,5 @@ public class UserService {
                 .map(UserDto::of)
                 .toList();
     }
+
 }
