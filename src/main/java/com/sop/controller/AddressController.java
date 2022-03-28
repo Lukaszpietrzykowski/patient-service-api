@@ -14,9 +14,9 @@ import java.util.List;
 @RequestMapping("/address")
 public class AddressController {
 
-    private AddressService addressService;
+    private final AddressService addressService;
 
-    @GetMapping("/getAll")
+    @GetMapping
     public List<AddressDto> getAddresses() {
         return addressService.getAddresses();
     }
