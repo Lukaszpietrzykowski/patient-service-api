@@ -11,19 +11,14 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@RequestMapping("/patient")
 public class PatientController {
 
     private PatientService patientService;
 
-    @GetMapping("/all") // nazwy do ustalenia
+    @GetMapping
     public List<PatientDto> getPatientList() {
         return patientService.getPatients();
-    }
-
-    @PostMapping("/add") // nazwy do ustalenia
-    public boolean addPatient(@RequestBody PatientEntity patient) {
-        patientService.addPatient(patient);
-        return true;
     }
 
 }
