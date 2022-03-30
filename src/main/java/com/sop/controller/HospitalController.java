@@ -9,12 +9,12 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/hospital")
+@RequestMapping("/hospital")
 public class HospitalController {
 
     private HospitalService hospitalService;
 
-    @GetMapping("/all")
+    @GetMapping
     public List<HospitalDto> getHospitalList() {
         return hospitalService.getHospitals();
     }
