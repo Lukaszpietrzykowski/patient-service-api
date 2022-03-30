@@ -1,5 +1,6 @@
 package com.sop.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sop.enums.GenderEnum;
 import com.sop.enums.PriorityEnum;
 import lombok.AllArgsConstructor;
