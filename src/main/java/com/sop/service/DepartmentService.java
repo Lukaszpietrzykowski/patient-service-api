@@ -13,7 +13,7 @@ public class DepartmentService {
 
     private final DepartmentRepository repository;
 
-    public List<DepartmentDto> getUsers() {
+    public List<DepartmentDto> getDepartment() {
         return repository.findAll()
                 .stream()
                 .map(DepartmentDto::of)
