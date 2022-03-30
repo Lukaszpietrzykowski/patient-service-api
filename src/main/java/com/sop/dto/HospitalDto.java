@@ -7,9 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import java.util.List;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,14 +18,14 @@ public class HospitalDto {
     private long id;
     private String name;
     private AddressEntity address;
-    private List<DepartmentEntity> deparments;
-    public static HospitalDto of(HospitalEntity hospital)
-    {
+    private List<DepartmentEntity> departments;
+
+    public static HospitalDto of(HospitalEntity hospital) {
         return HospitalDto.builder()
                 .id(hospital.getId())
                 .name(hospital.getName())
                 .address(hospital.getAddress())
-                .deparments(hospital.getDepartments())
+                .departments(hospital.getDepartments())
                 .build();
     }
 }

@@ -18,15 +18,14 @@ public class DepartmentDto {
     private long id;
     private String name;
     private List<PatientEntity> patents;
-    private long avalibleBeds;
+    private long availableBeds;
 
-    public static DepartmentDto of(DepartmentEntity department)
-    {
+    public static DepartmentDto of(DepartmentEntity department) {
         return DepartmentDto.builder()
                 .id(department.getId())
                 .name(department.getName())
                 .patents(department.getPatients())
-                .avalibleBeds(department.getAvailableBeds())
+                .availableBeds(department.getAvailableBeds())
                 .build();
     }
 }

@@ -5,14 +5,15 @@ import com.sop.repository.HospitalRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import  java.util.List;
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class HospitalService {
 
-    HospitalRepository hospitalRepository;
+    private final HospitalRepository hospitalRepository;
 
-    public List<HospitalDto> getHospitals(){
+    public List<HospitalDto> getHospitals() {
         return hospitalRepository.findAll()
                 .stream()
                 .map(HospitalDto::of)

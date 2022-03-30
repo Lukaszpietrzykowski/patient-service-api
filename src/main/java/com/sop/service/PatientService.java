@@ -1,7 +1,6 @@
 package com.sop.service;
 
 import com.sop.dto.PatientDto;
-import com.sop.entity.PatientEntity;
 import com.sop.repository.PatientRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,9 +18,5 @@ public class PatientService {
                 .stream()
                 .map(PatientDto::of)
                 .toList();
-    }
-
-    public void addPatient(PatientEntity patient) {
-        repository.save(patient);
     }
 }

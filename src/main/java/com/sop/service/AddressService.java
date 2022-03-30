@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 public class AddressService {
 
-    AddressRepository addressRepository;
+    private final AddressRepository addressRepository;
 
     public List<AddressDto> getAddresses() {
         return addressRepository.findAll()

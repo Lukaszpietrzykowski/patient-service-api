@@ -23,7 +23,7 @@ public class DepartmentEntity {
     private String name;
 
     @OneToMany(mappedBy = "department")
-    private List<PatientEntity> patients = new ArrayList<>() ;
+    private List<PatientEntity> patients = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "hospital_id")

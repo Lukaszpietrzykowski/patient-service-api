@@ -18,7 +18,7 @@ public class UserDto {
     private String login;
     private RoleEnum role;
 
-    public static UserDto of(UserEntity user){
+    public static UserDto of(UserEntity user) {
         return UserDto.builder()
                 .id(user.getId())
                 .email(user.getEmail())

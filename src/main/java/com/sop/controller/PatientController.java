@@ -1,11 +1,11 @@
 package com.sop.controller;
 
 import com.sop.dto.PatientDto;
-import com.sop.dto.UserDto;
-import com.sop.entity.PatientEntity;
 import com.sop.service.PatientService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping("/patient")
 public class PatientController {
 
-    private PatientService patientService;
+    private final PatientService patientService;
 
     @GetMapping
     public List<PatientDto> getPatientList() {
