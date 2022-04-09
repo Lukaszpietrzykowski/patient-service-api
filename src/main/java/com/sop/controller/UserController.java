@@ -12,14 +12,12 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/user")
-
 public class UserController {
 
     private UserService userService;
 
-    @GetMapping("/getAll")
-    public List<UserDto> getUserList(){
-    return userService.getUsers();
+    @GetMapping
+    public List<UserDto> getUserList() {
+        return userService.getUsers();
     }
-
 }
