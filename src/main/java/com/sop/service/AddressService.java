@@ -1,11 +1,10 @@
 package com.sop.service;
 
-import com.sop.creator.AddressCreator;
+import com.sop.creators.AddressCreator;
 import com.sop.dto.AddressDto;
 import com.sop.entity.AddressEntity;
 import com.sop.repository.AddressRepository;
 import lombok.AllArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,34 +15,26 @@ public class AddressService {
 
     private final AddressRepository addressRepository;
 
-    private final ModelMapper modelMapper;
-
     public AddressDto createAddress(AddressCreator addressCreator) {
-        if (exists(addressCreator)) {
-            throw new RuntimeException("Already added");
-        }
-        return convertToDto(addressRepository.save(convertToEntity(addressCreator)));
+        return AddressDto.of(addressRepository.save(AddressEntity.of(addressCreator)));
     }
 
     public List<AddressDto> getAddresses() {
         return addressRepository.findAll()
                 .stream()
-                .map(this::convertToDto)
+                .map(AddressDto::of)
                 .toList();
     }
 
     public AddressDto getAddress(Long id) {
-        return convertToDto(addressRepository.findById(id)
+        return AddressDto.of(addressRepository.findById(id)
                 .orElseThrow());
     }
 
     public AddressDto updateAddress(Long id, AddressCreator addressCreator) {
-        if (exists(addressCreator)) {
-            throw new RuntimeException("Already added");
-        }
-        return convertToDto(addressRepository.findById(id)
+        return AddressDto.of(addressRepository.findById(id)
                 .map(oldAddress -> {
-                    AddressEntity updatedAddress = oldAddress.updateWith(convertToEntity(addressCreator));
+                    AddressEntity updatedAddress = oldAddress.updateWith(AddressEntity.of(addressCreator));
                     return addressRepository.save(updatedAddress);
                 })
                 .orElseThrow());
@@ -51,25 +42,6 @@ public class AddressService {
 
     public void deleteAddress(Long id) {
         addressRepository.deleteById(id);
-    }
-
-    private boolean exists(AddressCreator addressCreator) {
-        return addressRepository.existsByCityAndStreetAndStreetNumberAndPostalCodeAndCountryAndLatAndLng(
-                addressCreator.getCity(),
-                addressCreator.getStreet(),
-                addressCreator.getStreetNumber(),
-                addressCreator.getPostalCode(),
-                addressCreator.getCountry(),
-                addressCreator.getLat(),
-                addressCreator.getLng());
-    }
-
-    private AddressEntity convertToEntity(AddressCreator addressCreator) {
-        return modelMapper.map(addressCreator, AddressEntity.class);
-    }
-
-    private AddressDto convertToDto(AddressEntity addressEntity) {
-        return modelMapper.map(addressEntity, AddressDto.class);
     }
 }
 

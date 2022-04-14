@@ -1,6 +1,6 @@
 package com.sop.controller;
 
-import com.sop.creator.AddressCreator;
+import com.sop.creators.AddressCreator;
 import com.sop.dto.AddressDto;
 import com.sop.service.AddressService;
 import lombok.AllArgsConstructor;
