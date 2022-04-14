@@ -33,8 +33,8 @@ public class AddressController {
     }
 
     @PostMapping("/add")
-    public AddressDto addAddress(@RequestBody AddressCreator address) {
-        return addressService.addAddress(address);
+    public AddressDto createAddress(@RequestBody AddressCreator address) {
+        return addressService.createAddress(address);
     }
 
     @PutMapping("/update/{id}")

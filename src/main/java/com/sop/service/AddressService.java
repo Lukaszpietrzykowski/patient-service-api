@@ -5,7 +5,6 @@ import com.sop.dto.AddressDto;
 import com.sop.entity.AddressEntity;
 import com.sop.repository.AddressRepository;
 import lombok.AllArgsConstructor;
-import lombok.SneakyThrows;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -19,10 +18,9 @@ public class AddressService {
 
     private final ModelMapper modelMapper;
 
-    @SneakyThrows
-    public AddressDto addAddress(AddressCreator addressCreator) {
+    public AddressDto createAddress(AddressCreator addressCreator) {
         if (exists(addressCreator)) {
-            throw new Exception("Already added");
+            throw new RuntimeException("Already added");
         }
         return convertToDto(addressRepository.save(convertToEntity(addressCreator)));
     }
@@ -34,16 +32,14 @@ public class AddressService {
                 .toList();
     }
 
-    @SneakyThrows
     public AddressDto getAddress(Long id) {
         return convertToDto(addressRepository.findById(id)
                 .orElseThrow());
     }
 
-    @SneakyThrows
     public AddressDto updateAddress(Long id, AddressCreator addressCreator) {
         if (exists(addressCreator)) {
-            throw new Exception("Already added");
+            throw new RuntimeException("Already added");
         }
         return convertToDto(addressRepository.findById(id)
                 .map(oldAddress -> {
