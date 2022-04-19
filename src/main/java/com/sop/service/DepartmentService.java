@@ -1,10 +1,12 @@
 package com.sop.service;
 
+import com.sop.creators.DepartmentCreator;
 import com.sop.dto.DepartmentDto;
 import com.sop.entity.DepartmentEntity;
+import com.sop.entity.HospitalEntity;
 import com.sop.repository.DepartmentRepository;
+import com.sop.repository.HospitalRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,45 +14,49 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class DepartmentService {
-    @Autowired
-    private final DepartmentRepository repository;
 
-    public DepartmentEntity saveDepartment(DepartmentEntity departmentEntity)
-    {
-        return repository.save(departmentEntity);
+    private final DepartmentRepository repository;
+    private final HospitalRepository hospitalRepository;
+
+    public DepartmentEntity saveDepartment(DepartmentCreator departmentCreator) {
+        HospitalEntity hospital = hospitalRepository.findById(departmentCreator.getHospitalId())
+                .orElse(null);
+
+        DepartmentEntity preparedDepartment = DepartmentEntity.builder()
+                .hospital(hospital)
+                .name(departmentCreator.getName())
+                .build();
+
+        return repository.save(preparedDepartment);
     }
 
-    public List<DepartmentEntity> saveDepartments(List<DepartmentEntity> departmentEntities)
-    {
+    public List<DepartmentEntity> saveDepartments(List<DepartmentEntity> departmentEntities) {
         return repository.saveAll(departmentEntities);
     }
 
-    public List<DepartmentEntity> getDepartmests()
-    {
-        return repository.findAll();
+    public DepartmentEntity getDepartmentById(long departmentId) {
+        return repository.findById(departmentId)
+                .orElse(null);
     }
 
-    public DepartmentEntity getDepartmentById(long departmentId)
-    {
-        return repository.findById(departmentId).orElse(null);
-    }
-
-    public void deleteDepartment(long departmentId)
-    {
+    public void deleteDepartment(long departmentId) {
         repository.deleteById(departmentId);
     }
 
-    public DepartmentEntity updateDepartment(DepartmentEntity departmentEntity)
-    {
-        DepartmentEntity existingDepartment = repository.findById(departmentEntity.getId()).orElse(null);
-        existingDepartment.setName(departmentEntity.getName());
-        existingDepartment.setHospital(departmentEntity.getHospital());
-        existingDepartment.setAvailableBeds(departmentEntity.getAvailableBeds());
+    public DepartmentEntity updateDepartment(DepartmentCreator departmentCreator, long id) {
+        DepartmentEntity existingDepartment = repository.findById(id)
+                .orElse(null);
 
+        HospitalEntity hospital = hospitalRepository.findById(departmentCreator.getHospitalId())
+                .orElse(null);
+
+        existingDepartment.setName(departmentCreator.getName());
+        existingDepartment.setHospital(hospital);
+        existingDepartment.setAvailableBeds(existingDepartment.getAvailableBeds() - existingDepartment.getPatients().size());
         return repository.save(existingDepartment);
     }
 
-    public List<DepartmentDto> getDepartment() {
+    public List<DepartmentDto> getDepartments() {
         return repository.findAll()
                 .stream()
                 .map(DepartmentDto::of)

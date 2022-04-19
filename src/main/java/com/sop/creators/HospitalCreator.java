@@ -4,7 +4,6 @@ import com.sop.entity.DepartmentEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import com.sop.entity.AddressEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +14,7 @@ import java.util.List;
 public class HospitalCreator {
 
     private String name;
-    private AddressEntity Address;
+    private AddressCreator address;
 
     private List<DepartmentEntity> departments = new ArrayList<>();
 }

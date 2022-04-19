@@ -1,6 +1,8 @@
 package com.sop.entity;
 
+import com.sop.creators.DepartmentCreator;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,6 +15,7 @@ import java.util.List;
 @Table(name = "DEPARTMENT")
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class DepartmentEntity {
