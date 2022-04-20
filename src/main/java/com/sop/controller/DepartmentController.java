@@ -23,33 +23,28 @@ public class DepartmentController {
 
     private final DepartmentService departmentService;
 
-    @GetMapping
+    @GetMapping("/all")
     public List<DepartmentDto> getDepartments() {
         return departmentService.getDepartments();
     }
 
-    @PostMapping
+    @PostMapping("/add")
     public DepartmentEntity addDepartment(@RequestBody DepartmentCreator departmentCreator) {
         return departmentService.saveDepartment(departmentCreator);
     }
 
-    @PostMapping("/departments")
-    public List<DepartmentEntity> addDepartments(@RequestBody List<DepartmentEntity> departmentEntities) {
-        return departmentService.saveDepartments(departmentEntities);
+    @GetMapping("/{id}")
+    public DepartmentEntity findDepartmentById(@PathVariable long id) {
+        return departmentService.getDepartmentById(id);
     }
 
-    @GetMapping("/{departmentId}")
-    public DepartmentEntity findDepartmentById(@PathVariable long departmentId) {
-        return departmentService.getDepartmentById(departmentId);
-    }
-
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public DepartmentEntity updateDepartment(@RequestBody DepartmentCreator departmentCreator, @PathVariable long id) {
         return departmentService.updateDepartment(departmentCreator, id);
     }
 
-    @DeleteMapping("/{departmentId}")
-    public void deleteDepartment(@PathVariable long departmentId) {
-        departmentService.deleteDepartment(departmentId);
+    @DeleteMapping("/remove/{id}")
+    public void deleteDepartment(@PathVariable long id) {
+        departmentService.deleteDepartment(id);
     }
 }

@@ -30,10 +30,6 @@ public class DepartmentService {
         return repository.save(preparedDepartment);
     }
 
-    public List<DepartmentEntity> saveDepartments(List<DepartmentEntity> departmentEntities) {
-        return repository.saveAll(departmentEntities);
-    }
-
     public DepartmentEntity getDepartmentById(long departmentId) {
         return repository.findById(departmentId)
                 .orElse(null);
@@ -44,15 +40,11 @@ public class DepartmentService {
     }
 
     public DepartmentEntity updateDepartment(DepartmentCreator departmentCreator, long id) {
-        DepartmentEntity existingDepartment = repository.findById(id)
-                .orElse(null);
-
-        HospitalEntity hospital = hospitalRepository.findById(departmentCreator.getHospitalId())
-                .orElse(null);
+        DepartmentEntity existingDepartment = repository.findById(id).get();
+        HospitalEntity hospital = hospitalRepository.findById(departmentCreator.getHospitalId()).get();
 
         existingDepartment.setName(departmentCreator.getName());
         existingDepartment.setHospital(hospital);
-        existingDepartment.setAvailableBeds(existingDepartment.getAvailableBeds() - existingDepartment.getPatients().size());
         return repository.save(existingDepartment);
     }
 

@@ -22,13 +22,13 @@ public class AddressController {
 
     private final AddressService addressService;
 
-    @GetMapping
+    @GetMapping("/all")
     public List<AddressDto> getAddresses() {
         return addressService.getAddresses();
     }
 
     @GetMapping("/{id}")
-    public AddressDto getAddress(@PathVariable Long id) {
+    public AddressDto getAddress(@PathVariable long id) {
         return addressService.getAddress(id);
     }
 
@@ -38,12 +38,12 @@ public class AddressController {
     }
 
     @PutMapping("/update/{id}")
-    public AddressDto updateAddress(@PathVariable Long id, @RequestBody AddressCreator address) {
+    public AddressDto updateAddress(@PathVariable long id, @RequestBody AddressCreator address) {
         return addressService.updateAddress(id, address);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public void deleteAddress(@PathVariable Long id) {
+    @DeleteMapping("/remove/{id}")
+    public void deleteAddress(@PathVariable long id) {
         addressService.deleteAddress(id);
     }
 }

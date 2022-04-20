@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -38,6 +39,12 @@ public class PatientDto {
                 .dischargeDate(patient.getDischargeDate())
                 .registrationDate(patient.getRegistrationDate())
                 .build();
+    }
+
+    public static List<PatientDto> ofList(List<PatientEntity> patients) {
+        return patients.stream()
+                .map(PatientDto::of)
+                .toList();
     }
 
 

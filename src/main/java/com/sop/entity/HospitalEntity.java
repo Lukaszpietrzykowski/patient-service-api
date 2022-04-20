@@ -38,17 +38,16 @@ public class HospitalEntity {
     @OneToMany(mappedBy = "hospital")
     private List<DepartmentEntity> departments = new ArrayList<>();
 
-    public static HospitalEntity of (HospitalCreator hospital)
-    {
-        return  HospitalEntity.builder()
+    public static HospitalEntity of(HospitalCreator hospital) {
+        return HospitalEntity.builder()
                 .name(hospital.getName())
-                .address(hospital.getAddress())
-                .departments(hospital.getDepartments())
+//                .address(hospital.getAddress())
+//                .departments(hospital.getDepartments())
                 .build();
 
     }
-    public HospitalEntity updateWith(HospitalEntity hospital)
-    {
+
+    public HospitalEntity updateWith(HospitalEntity hospital) {
         return HospitalEntity.builder()
                 .id(this.id)
                 .name(hospital.getName())

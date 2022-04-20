@@ -14,11 +14,13 @@ import java.util.List;
 @AllArgsConstructor
 public class HospitalService {
 
-    public HospitalDto createHospital(HospitalCreator hospitalCreator) {
-        return HospitalDto.of(hospitalRepository.save(HospitalEntity.of(hospitalCreator)));
-    }
-
     private final HospitalRepository hospitalRepository;
+
+    public HospitalDto createHospital(HospitalCreator hospitalCreator) {
+        HospitalEntity hospitalEntity = hospitalRepository.save(HospitalEntity.of(hospitalCreator));
+
+        return HospitalDto.of(hospitalEntity);
+    }
 
     public List<HospitalDto> getHospitals() {
         return hospitalRepository.findAll()

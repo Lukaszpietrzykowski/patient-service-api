@@ -9,4 +9,5 @@ public class DepartmentCreator {
 
     private String name;
     private long hospitalId;
+    private long availableBeds;
 }

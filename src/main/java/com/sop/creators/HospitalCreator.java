@@ -1,6 +1,5 @@
 package com.sop.creators;
 
-import com.sop.entity.DepartmentEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,6 +14,5 @@ public class HospitalCreator {
 
     private String name;
     private AddressCreator address;
-
-    private List<DepartmentEntity> departments = new ArrayList<>();
+    private List<DepartmentCreator> departments = new ArrayList<>();
 }

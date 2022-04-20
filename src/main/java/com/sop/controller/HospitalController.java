@@ -23,7 +23,7 @@ public class HospitalController {
     @Autowired
     private final HospitalService hospitalService;
 
-    @GetMapping
+    @GetMapping("/all")
     public List<HospitalDto> getHospitalList() {
         return hospitalService.getHospitals();
     }
@@ -34,17 +34,17 @@ public class HospitalController {
     }
 
     @PostMapping
-    public HospitalDto addHospital(@RequestBody HospitalCreator hospitalEntity) {
-        return hospitalService.createHospital(hospitalEntity);
+    public HospitalDto addHospital(@RequestBody HospitalCreator hospitalCreator) {
+        return hospitalService.createHospital(hospitalCreator);
     }
 
     @PutMapping("/{id}")
-    public HospitalDto updateAddress(@PathVariable Long id, @RequestBody HospitalCreator hospitalCreator) {
+    public HospitalDto updateAddress(@PathVariable long id, @RequestBody HospitalCreator hospitalCreator) {
         return hospitalService.updateHospital(id, hospitalCreator);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteHospital(@PathVariable Long id) {
+    public void deleteHospital(@PathVariable long id) {
         hospitalService.deleteHospital(id);
     }
 
