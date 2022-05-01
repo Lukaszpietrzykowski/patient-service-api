@@ -1,6 +1,8 @@
 package com.sop.entity;
 
 
+import com.sop.creators.AddressCreator;
+import com.sop.creators.UserCreator;
 import com.sop.enums.RoleEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -32,4 +34,22 @@ public class UserEntity {
 
     @Enumerated(EnumType.STRING)
     private RoleEnum role;
+
+    public static UserEntity of(UserCreator user) {
+        return UserEntity.builder()
+                .email(user.getEmail())
+                .login(user.getLogin())
+                .password(user.getPassword())
+                .role(user.getRole())
+                .build();
+    }
+    public UserEntity updateWith(UserEntity user) {
+        return UserEntity.builder()
+                .id(this.id)
+                .email(user.getEmail())
+                .login(user.getLogin())
+                .password(user.getPassword())
+                .role(user.getRole())
+                .build();
+    }
 }
