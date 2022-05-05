@@ -13,7 +13,6 @@ import java.util.List;
 @Builder
 @Getter
 public class DepartmentDto {
-
     private long id;
     private String name;
     private List<PatientDto> patents;

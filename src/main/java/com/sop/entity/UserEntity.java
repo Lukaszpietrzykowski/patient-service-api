@@ -1,7 +1,6 @@
 package com.sop.entity;
 
 
-import com.sop.creators.AddressCreator;
 import com.sop.creators.UserCreator;
 import com.sop.enums.RoleEnum;
 import lombok.AllArgsConstructor;
@@ -43,6 +42,7 @@ public class UserEntity {
                 .role(user.getRole())
                 .build();
     }
+
     public UserEntity updateWith(UserEntity user) {
         return UserEntity.builder()
                 .id(this.id)

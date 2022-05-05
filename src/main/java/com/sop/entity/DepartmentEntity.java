@@ -1,5 +1,6 @@
 package com.sop.entity;
 
+import com.sop.creators.DepartmentCreator;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

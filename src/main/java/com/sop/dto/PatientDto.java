@@ -46,6 +46,4 @@ public class PatientDto {
                 .map(PatientDto::of)
                 .toList();
     }
-
-
 }

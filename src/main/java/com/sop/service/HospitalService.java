@@ -7,7 +7,6 @@ import com.sop.repository.HospitalRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -17,9 +16,7 @@ public class HospitalService {
     private final HospitalRepository hospitalRepository;
 
     public HospitalDto createHospital(HospitalCreator hospitalCreator) {
-        HospitalEntity hospitalEntity = hospitalRepository.save(HospitalEntity.of(hospitalCreator));
-
-        return HospitalDto.of(hospitalEntity);
+        return HospitalDto.of(hospitalRepository.save(HospitalEntity.of(hospitalCreator)));
     }
 
     public List<HospitalDto> getHospitals() {
@@ -29,8 +26,9 @@ public class HospitalService {
                 .toList();
     }
 
-    public HospitalDto getHospital(long id) {
-        return HospitalDto.of(hospitalRepository.findById(id).orElseThrow());
+    public HospitalDto getHospital(Long id) {
+        return HospitalDto.of(hospitalRepository.findById(id)
+                .orElseThrow());
 
     }
 
@@ -42,7 +40,7 @@ public class HospitalService {
                 }).orElseThrow());
     }
 
-    public void deleteHospital(long id) {
-        hospitalRepository.deleteAllById(Collections.singleton(id));
+    public void deleteHospital(Long id) {
+        hospitalRepository.deleteById(id);
     }
 }
