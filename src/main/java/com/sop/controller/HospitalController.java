@@ -33,13 +33,13 @@ public class HospitalController {
     }
 
     @PostMapping("/add")
-    public HospitalDto addHospital(@RequestBody HospitalCreator hospitalEntity) {
-        return hospitalService.createHospital(hospitalEntity);
+    public HospitalDto addHospital(@RequestBody HospitalCreator hospital) {
+        return hospitalService.createHospital(hospital);
     }
 
     @PutMapping("/update/{id}")
-    public HospitalDto updateAddress(@PathVariable long id, @RequestBody HospitalCreator hospitalCreator) {
-        return hospitalService.updateHospital(id, hospitalCreator);
+    public HospitalDto updateAddress(@PathVariable long id, @RequestBody HospitalCreator hospital) {
+        return hospitalService.updateHospital(id, hospital);
     }
 
     @DeleteMapping("/delete/{id}")
