@@ -42,7 +42,7 @@ public class AddressController {
         return addressService.updateAddress(id, address);
     }
 
-    @DeleteMapping("/remove/{id}")
+    @DeleteMapping("/delete/{id}")
     public void deleteAddress(@PathVariable long id) {
         addressService.deleteAddress(id);
     }

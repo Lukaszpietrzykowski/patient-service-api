@@ -4,7 +4,6 @@ import com.sop.creators.HospitalCreator;
 import com.sop.dto.HospitalDto;
 import com.sop.service.HospitalService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +19,7 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("/hospital")
 public class HospitalController {
-    @Autowired
+
     private final HospitalService hospitalService;
 
     @GetMapping("/all")
@@ -33,17 +32,17 @@ public class HospitalController {
         return hospitalService.getHospital(id);
     }
 
-    @PostMapping
-    public HospitalDto addHospital(@RequestBody HospitalCreator hospitalCreator) {
-        return hospitalService.createHospital(hospitalCreator);
+    @PostMapping("/add")
+    public HospitalDto addHospital(@RequestBody HospitalCreator hospitalEntity) {
+        return hospitalService.createHospital(hospitalEntity);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public HospitalDto updateAddress(@PathVariable long id, @RequestBody HospitalCreator hospitalCreator) {
         return hospitalService.updateHospital(id, hospitalCreator);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public void deleteHospital(@PathVariable long id) {
         hospitalService.deleteHospital(id);
     }

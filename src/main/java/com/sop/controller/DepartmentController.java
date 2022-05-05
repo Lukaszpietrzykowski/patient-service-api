@@ -43,7 +43,7 @@ public class DepartmentController {
         return departmentService.updateDepartment(departmentCreator, id);
     }
 
-    @DeleteMapping("/remove/{id}")
+    @DeleteMapping("/delete/{id}")
     public void deleteDepartment(@PathVariable long id) {
         departmentService.deleteDepartment(id);
     }
