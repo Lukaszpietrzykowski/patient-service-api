@@ -10,7 +10,7 @@ import java.util.List;
 
 public class UserDetailsImpl implements UserDetails {
 
-    private final UserEntity user;
+    private final transient UserEntity user;
 
     public UserDetailsImpl(UserEntity user) {
         this.user = user;
