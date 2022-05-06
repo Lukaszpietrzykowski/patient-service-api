@@ -3,7 +3,6 @@ package com.sop.controller;
 import com.sop.creators.HospitalCreator;
 import com.sop.dto.HospitalDto;
 import com.sop.service.HospitalService;
-import com.sop.service.HospitalServiceEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
