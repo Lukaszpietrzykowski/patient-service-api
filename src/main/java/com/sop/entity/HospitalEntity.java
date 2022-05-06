@@ -2,26 +2,28 @@ package com.sop.entity;
 
 import com.sop.creators.HospitalCreator;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Builder;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "HOSPITAL")
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
+@Setter
 @Builder
 public class HospitalEntity {
 
@@ -41,10 +43,8 @@ public class HospitalEntity {
     public static HospitalEntity of(HospitalCreator hospital) {
         return HospitalEntity.builder()
                 .name(hospital.getName())
-//                .address(hospital.getAddress())
-//                .departments(hospital.getDepartments())
+                .departments(new ArrayList<>())
                 .build();
-
     }
 
     public HospitalEntity updateWith(HospitalEntity hospital) {

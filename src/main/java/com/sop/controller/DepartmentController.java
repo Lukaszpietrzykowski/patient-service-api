@@ -2,7 +2,6 @@ package com.sop.controller;
 
 import com.sop.creators.DepartmentCreator;
 import com.sop.dto.DepartmentDto;
-import com.sop.entity.DepartmentEntity;
 import com.sop.service.DepartmentService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,19 +27,19 @@ public class DepartmentController {
         return departmentService.getDepartments();
     }
 
-    @PostMapping("/add")
-    public DepartmentEntity addDepartment(@RequestBody DepartmentCreator departmentCreator) {
-        return departmentService.saveDepartment(departmentCreator);
+    @GetMapping("/{id}")
+    public DepartmentDto findDepartmentById(@PathVariable long id) {
+        return departmentService.getDepartment(id);
     }
 
-    @GetMapping("/{id}")
-    public DepartmentEntity findDepartmentById(@PathVariable long id) {
-        return departmentService.getDepartmentById(id);
+    @PostMapping("/add")
+    public DepartmentDto addDepartment(@RequestBody DepartmentCreator department) {
+        return departmentService.createDepartment(department);
     }
 
     @PutMapping("/update/{id}")
-    public DepartmentEntity updateDepartment(@RequestBody DepartmentCreator departmentCreator, @PathVariable long id) {
-        return departmentService.updateDepartment(departmentCreator, id);
+    public DepartmentDto updateDepartment(@PathVariable long id, @RequestBody DepartmentCreator department) {
+        return departmentService.updateDepartment(id, department);
     }
 
     @DeleteMapping("/delete/{id}")
