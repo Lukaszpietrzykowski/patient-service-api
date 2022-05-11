@@ -19,6 +19,7 @@ public class PatientDto {
     private String lastName;
     private String pesel;
     private LocalDateTime birthDate;
+    private long age;
     private GenderEnum gender;
     private PriorityEnum priority;
     private LocalDateTime dischargeDate;
@@ -30,6 +31,7 @@ public class PatientDto {
                 .firstName(patient.getFirstName())
                 .lastName(patient.getLastName())
                 .pesel(patient.getPesel())
+                .age(patient.getAge())
                 .birthDate(patient.getBirthDate())
                 .gender(patient.getGender())
                 .priority(patient.getPriority())

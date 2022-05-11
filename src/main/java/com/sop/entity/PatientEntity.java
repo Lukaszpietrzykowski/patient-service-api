@@ -17,6 +17,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
+import java.time.Period;
 
 @Entity
 @Table(name = "PATIENT")
@@ -47,4 +48,24 @@ public class PatientEntity {
     @ManyToOne
     @JoinColumn(name = "department_id")
     DepartmentEntity department;
+
+    public PatientEntity updateWith(PatientEntity patient) {
+        patient.setId(this.getId());
+        return patient;
+    }
+
+    public static PatientEntity of(PatientCreator patient, LocalDateTime registrationDate) {
+        return PatientEntity.builder()
+                .firstName(patient.getFirstName())
+                .lastName(patient.getLastName())
+                .pesel(patient.getPesel())
+                .age(Period.between(patient.getBirthDate().toLocalDate(), LocalDate.now()).getYears())
+                .birthDate(patient.getBirthDate())
+                .gender(patient.getGender())
+                .priority(patient.getPriority())
+                .dischargeDate(null)
+                .registrationDate(registrationDate)
+                .build();
+    }
+
 }
