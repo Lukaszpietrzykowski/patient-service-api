@@ -6,17 +6,14 @@ import com.sop.enums.PriorityEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Getter
 public class PatientDto {
-
     private long id;
     private String firstName;
     private String lastName;
@@ -41,11 +38,9 @@ public class PatientDto {
                 .build();
     }
 
-    public static List<PatientDto> ofList(List<PatientEntity> patients) {
+    public static List<PatientDto> listOf(List<PatientEntity> patients) {
         return patients.stream()
                 .map(PatientDto::of)
                 .toList();
     }
-
-
 }

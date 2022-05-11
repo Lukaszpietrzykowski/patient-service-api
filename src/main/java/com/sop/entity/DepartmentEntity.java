@@ -1,5 +1,6 @@
 package com.sop.entity;
 
+import com.sop.creators.DepartmentCreator;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,11 +20,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "DEPARTMENT")
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class DepartmentEntity {
 
     @Id
@@ -39,4 +40,22 @@ public class DepartmentEntity {
     private HospitalEntity hospital;
 
     private long availableBeds;
+
+    public static DepartmentEntity of(DepartmentCreator department) {
+        return DepartmentEntity.builder()
+                .name(department.getName())
+                .patients(new ArrayList<>())
+                .availableBeds(department.getAvailableBeds())
+                .build();
+    }
+
+    public DepartmentEntity updateWith(DepartmentEntity department) {
+        return DepartmentEntity.builder()
+                .id(this.id)
+                .name(department.getName())
+                .patients(this.patients)
+                .hospital(this.hospital)
+                .availableBeds(department.getAvailableBeds())
+                .build();
+    }
 }

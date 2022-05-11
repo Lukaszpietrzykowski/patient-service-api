@@ -15,43 +15,49 @@ import java.util.List;
 @AllArgsConstructor
 public class DepartmentService {
 
-    private final DepartmentRepository repository;
+    private final DepartmentRepository departmentRepository;
     private final HospitalRepository hospitalRepository;
 
-    public DepartmentEntity saveDepartment(DepartmentCreator departmentCreator) {
+    public DepartmentDto createDepartment(DepartmentCreator departmentCreator) {
         HospitalEntity hospital = hospitalRepository.findById(departmentCreator.getHospitalId())
-                .orElse(null);
+                .orElseThrow();
 
-        DepartmentEntity preparedDepartment = DepartmentEntity.builder()
-                .hospital(hospital)
-                .name(departmentCreator.getName())
-                .build();
+        DepartmentEntity department = DepartmentEntity.of(departmentCreator);
+        department.setHospital(hospital);
 
-        return repository.save(preparedDepartment);
-    }
+        hospital.getDepartments().add(department);
+        hospitalRepository.save(hospital);
 
-    public DepartmentEntity getDepartmentById(long departmentId) {
-        return repository.findById(departmentId)
-                .orElse(null);
-    }
-
-    public void deleteDepartment(long departmentId) {
-        repository.deleteById(departmentId);
-    }
-
-    public DepartmentEntity updateDepartment(DepartmentCreator departmentCreator, long id) {
-        DepartmentEntity existingDepartment = repository.findById(id).get();
-        HospitalEntity hospital = hospitalRepository.findById(departmentCreator.getHospitalId()).get();
-
-        existingDepartment.setName(departmentCreator.getName());
-        existingDepartment.setHospital(hospital);
-        return repository.save(existingDepartment);
+        return DepartmentDto.of(departmentRepository.save(department));
     }
 
     public List<DepartmentDto> getDepartments() {
-        return repository.findAll()
+        return departmentRepository.findAll()
                 .stream()
                 .map(DepartmentDto::of)
                 .toList();
+    }
+
+    public DepartmentDto getDepartment(Long id) {
+        return DepartmentDto.of(departmentRepository.findById(id)
+                .orElseThrow());
+    }
+
+    public DepartmentDto updateDepartment(Long id, DepartmentCreator departmentCreator) {
+        return DepartmentDto.of(departmentRepository.findById(id)
+                .map(oldDepartment -> {
+                    HospitalEntity hospital = hospitalRepository.findById(departmentCreator.getHospitalId())
+                            .orElseThrow();
+
+                    DepartmentEntity updatedDepartment = oldDepartment.updateWith(DepartmentEntity.of(departmentCreator));
+                    updatedDepartment.setHospital(hospital);
+
+                    return departmentRepository.save(updatedDepartment);
+                })
+                .orElseThrow());
+    }
+
+    public void deleteDepartment(Long id) {
+        departmentRepository.deleteById(id);
     }
 }

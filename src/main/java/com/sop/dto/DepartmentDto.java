@@ -4,16 +4,13 @@ import com.sop.entity.DepartmentEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Getter
 public class DepartmentDto {
-
     private long id;
     private String name;
     private List<PatientDto> patents;
@@ -23,14 +20,29 @@ public class DepartmentDto {
         return DepartmentDto.builder()
                 .id(department.getId())
                 .name(department.getName())
-                .patents(PatientDto.ofList(department.getPatients()))
+                .patents(PatientDto.listOf(department.getPatients()))
                 .availableBeds(department.getAvailableBeds())
                 .build();
     }
 
-    public static List<DepartmentDto> ofList(List<DepartmentEntity> departments) {
-        return departments.stream()
-                .map(DepartmentDto::of)
-                .toList();
+    @AllArgsConstructor
+    @Builder
+    @Getter
+    public static class DepartmentDtoShort {
+        private long id;
+        private String name;
+
+        public static DepartmentDtoShort of(DepartmentEntity department) {
+            return DepartmentDtoShort.builder().
+                    id(department.getId())
+                    .name(department.getName())
+                    .build();
+        }
+
+        public static List<DepartmentDtoShort> listOf(List<DepartmentEntity> departments) {
+            return departments.stream()
+                    .map(DepartmentDtoShort::of)
+                    .toList();
+        }
     }
 }

@@ -14,8 +14,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "ADDRESS")
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Builder
 public class AddressEntity {
@@ -39,6 +39,8 @@ public class AddressEntity {
                 .streetNumber(address.getStreetNumber())
                 .postalCode(address.getPostalCode())
                 .country(address.getCountry())
+                .lat(address.getLat())
+                .lng(address.getLng())
                 .build();
     }
 

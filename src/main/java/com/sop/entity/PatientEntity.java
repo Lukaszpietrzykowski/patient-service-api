@@ -3,6 +3,7 @@ package com.sop.entity;
 import com.sop.enums.GenderEnum;
 import com.sop.enums.PriorityEnum;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -19,9 +20,10 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "PATIENT")
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
+@Builder
 public class PatientEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
