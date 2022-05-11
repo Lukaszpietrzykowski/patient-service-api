@@ -1,6 +1,8 @@
 package com.sop.entity;
 
+import com.sop.creators.AddressCreator;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -12,9 +14,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "ADDRESS")
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
+@Builder
 public class AddressEntity {
 
     @Id
@@ -29,6 +32,29 @@ public class AddressEntity {
     private double lat;
     private double lng;
 
-}
+    public static AddressEntity of(AddressCreator address) {
+        return AddressEntity.builder()
+                .city(address.getCity())
+                .street(address.getStreet())
+                .streetNumber(address.getStreetNumber())
+                .postalCode(address.getPostalCode())
+                .country(address.getCountry())
+                .lat(address.getLat())
+                .lng(address.getLng())
+                .build();
+    }
 
+    public AddressEntity updateWith(AddressEntity address) {
+        return AddressEntity.builder()
+                .id(this.id)
+                .city(address.getCity())
+                .street(address.getStreet())
+                .streetNumber(address.getStreetNumber())
+                .postalCode(address.getPostalCode())
+                .country(address.getCountry())
+                .lat(address.getLat())
+                .lng(address.getLng())
+                .build();
+    }
+}
 
