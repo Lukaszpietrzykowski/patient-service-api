@@ -15,14 +15,5 @@ public class PatientServiceApiApplication {
     public static void main(String[] args) {
         SpringApplication.run(PatientServiceApiApplication.class, args);
     }
-
-    @Bean
-    public CommandLineRunner demo(UserService userService) {
-        return args -> {
-            String rawPassword = "pass";
-            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-            userService.createUser(new UserCreator("admin", "admin", encoder.encode(rawPassword), RoleEnum.ADMIN));
-        };
-    }
 }
 
