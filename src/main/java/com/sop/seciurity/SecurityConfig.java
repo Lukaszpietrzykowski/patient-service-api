@@ -10,6 +10,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import javax.servlet.http.HttpServletResponse;
+
 @Configuration
 @EnableWebSecurity
 @AllArgsConstructor
@@ -39,14 +41,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/swagger-ui/index.html").permitAll()
+                .formLogin()
+                .loginProcessingUrl("/login")
+                .successHandler((request, response, authentication) -> response.setStatus(HttpServletResponse.SC_OK))
+                .failureHandler((request, response, authentication) -> response.setStatus(HttpServletResponse.SC_NOT_FOUND))
+                .and()
+                .exceptionHandling()
+                .authenticationEntryPoint((request, response, authException) -> response.setStatus(HttpServletResponse.SC_UNAUTHORIZED))
+                .accessDeniedHandler((request, response, accessDeniedException) -> response.setStatus(HttpServletResponse.SC_FORBIDDEN))
+                .and()
+                .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessHandler((request, response, authentication) -> response.setStatus(HttpServletResponse.SC_OK))
+                .deleteCookies("JSESSIONID")
                 .and()
                 .authorizeRequests()
-                .anyRequest().authenticated().and().httpBasic()
-                .and()
-                .formLogin().loginPage("/login").permitAll()
-                .and()
-                .logout().permitAll();
+                .anyRequest().authenticated();
     }
 }
