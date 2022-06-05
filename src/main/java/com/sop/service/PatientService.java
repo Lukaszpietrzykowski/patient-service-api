@@ -2,7 +2,9 @@ package com.sop.service;
 
 import com.sop.creators.PatientCreator;
 import com.sop.dto.PatientDto;
+import com.sop.entity.DepartmentEntity;
 import com.sop.entity.PatientEntity;
+import com.sop.repository.DepartmentRepository;
 import com.sop.repository.PatientRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,8 @@ import java.util.List;
 public class PatientService {
 
     private final PatientRepository patientRepository;
+
+    private final DepartmentRepository departmentRepository;
 
     public List<PatientDto> getPatients() {
         if (patientRepository.findAll().isEmpty()) {
@@ -34,7 +38,10 @@ public class PatientService {
     }
 
     public void createPatient(PatientCreator patient) {
-        patientRepository.save(PatientEntity.of(patient, LocalDateTime.now()));
+        DepartmentEntity department = departmentRepository.getById(patient.getDepartmentId());
+        PatientEntity patientEntity = PatientEntity.of(patient, LocalDateTime.now());
+        patientEntity.setDepartment(department);
+        patientRepository.save(patientEntity);
     }
 
     public void createVisit(PatientCreator patient) {
