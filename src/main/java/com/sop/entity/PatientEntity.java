@@ -63,7 +63,7 @@ public class PatientEntity {
                 .firstName(patient.getFirstName())
                 .lastName(patient.getLastName())
                 .pesel(patient.getPesel())
-                .age(Period.between(patient.getBirthDate().toLocalDate(), LocalDate.now()).getYears())
+                .age(patient.getAge())
                 .birthDate(patient.getBirthDate())
                 .gender(patient.getGender())
                 .priority(patient.getPriority())

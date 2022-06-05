@@ -20,6 +20,7 @@ public class PatientCreator {
     private GenderEnum gender;
     private PriorityEnum priority;
     private LocalDateTime registrationDate;
+    private Long age;
     private Long departmentId;
 
 }
