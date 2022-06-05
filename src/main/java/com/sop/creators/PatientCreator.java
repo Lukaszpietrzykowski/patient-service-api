@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
@@ -16,10 +17,10 @@ public class PatientCreator {
     private String firstName;
     private String lastName;
     private String pesel;
-    private LocalDateTime birthDate;
+    private LocalDate birthDate;
     private GenderEnum gender;
     private PriorityEnum priority;
-    private LocalDateTime registrationDate;
+    private LocalDate registrationDate;
     private Long age;
     private Long departmentId;
 
