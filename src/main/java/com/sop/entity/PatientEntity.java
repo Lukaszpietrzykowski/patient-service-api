@@ -20,7 +20,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.Period;
+import java.time.LocalTime;
 
 @Entity
 @Table(name = "PATIENT")
@@ -64,12 +64,13 @@ public class PatientEntity {
                 .lastName(patient.getLastName())
                 .pesel(patient.getPesel())
                 .age(patient.getAge())
-                .birthDate(patient.getBirthDate())
+                .birthDate(LocalDateTime.of(patient.getBirthDate(), LocalTime.of(0,0,0)))
                 .gender(patient.getGender())
                 .priority(patient.getPriority())
                 .dischargeDate(null)
                 .registrationDate(registrationDate)
                 .build();
     }
+
 
 }

@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @Service
@@ -45,13 +46,13 @@ public class PatientService {
     }
 
     public void createVisit(PatientCreator patient) {
-        patientRepository.save(PatientEntity.of(patient, patient.getRegistrationDate()));
+        patientRepository.save(PatientEntity.of(patient, LocalDateTime.of(patient.getRegistrationDate(), LocalTime.of(0,0,0))));
     }
 
     public void updatePatient(long id, PatientCreator patient) {
         patientRepository.findById(id)
                 .map(oldPatient -> {
-                    PatientEntity updatedPatient = oldPatient.updateWith(PatientEntity.of(patient, patient.getRegistrationDate()));
+                    PatientEntity updatedPatient = oldPatient.updateWith(PatientEntity.of(patient, LocalDateTime.of(patient.getRegistrationDate(), LocalTime.of(0,0,0))));
                     return patientRepository.save(updatedPatient);
                 })
                 .orElseThrow(() -> new RuntimeException("Patient doesn't exist"));

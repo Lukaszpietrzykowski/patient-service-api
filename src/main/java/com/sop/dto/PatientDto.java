@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -18,12 +19,13 @@ public class PatientDto {
     private String firstName;
     private String lastName;
     private String pesel;
-    private LocalDateTime birthDate;
+    private LocalDate birthDate;
     private long age;
     private GenderEnum gender;
     private PriorityEnum priority;
-    private LocalDateTime dischargeDate;
-    private LocalDateTime registrationDate;
+    private LocalDate dischargeDate;
+    private LocalDate registrationDate;
+
 
     public static PatientDto of(PatientEntity patient) {
         return PatientDto.builder()
@@ -32,11 +34,11 @@ public class PatientDto {
                 .lastName(patient.getLastName())
                 .pesel(patient.getPesel())
                 .age(patient.getAge())
-                .birthDate(patient.getBirthDate())
+                .birthDate(patient.getBirthDate().toLocalDate())
                 .gender(patient.getGender())
                 .priority(patient.getPriority())
-                .dischargeDate(patient.getDischargeDate())
-                .registrationDate(patient.getRegistrationDate())
+                .dischargeDate(patient.getDischargeDate().toLocalDate())
+                .registrationDate(patient.getRegistrationDate().toLocalDate())
                 .build();
     }
 
