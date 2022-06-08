@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -35,10 +36,11 @@ public class UserEntity {
     private RoleEnum role;
 
     public static UserEntity of(UserCreator user) {
+
         return UserEntity.builder()
                 .email(user.getEmail())
                 .login(user.getLogin())
-                .password(user.getPassword())
+                .password(new BCryptPasswordEncoder().encode(user.getPassword()))
                 .role(user.getRole())
                 .build();
     }
@@ -48,7 +50,7 @@ public class UserEntity {
                 .id(this.id)
                 .email(user.getEmail())
                 .login(user.getLogin())
-                .password(user.getPassword())
+                .password(new BCryptPasswordEncoder().encode(user.getPassword()))
                 .role(user.getRole())
                 .build();
     }
