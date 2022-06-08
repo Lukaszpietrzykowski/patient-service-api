@@ -5,10 +5,12 @@ import com.sop.enums.RoleEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @Builder
 @Getter
+@NoArgsConstructor
 public class UserDto {
     private long id;
     private String email;
