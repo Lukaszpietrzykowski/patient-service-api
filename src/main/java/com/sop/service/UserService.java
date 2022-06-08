@@ -30,6 +30,9 @@ public class UserService {
         return UserDto.of(repository.findById(id)
                 .orElseThrow());
     }
+    public UserDto getUserByUsername(String login) {
+        return UserDto.of(repository.findByLogin(login));
+    }
 
     public UserDto updateUser(Long id, UserCreator userCreator) {
         return UserDto.of(repository.findById(id)

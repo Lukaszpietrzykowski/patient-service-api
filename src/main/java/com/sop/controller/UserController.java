@@ -31,6 +31,10 @@ public class UserController {
     public UserDto getUser(@PathVariable long id) {
         return userService.getUser(id);
     }
+    @GetMapping("/{login}")
+    public UserDto getUserByUsername(@PathVariable String login) {
+        return userService.getUserByUsername(login);
+    }
 
     @PostMapping("/add")
     public UserDto createUser(@RequestBody UserCreator user) {
