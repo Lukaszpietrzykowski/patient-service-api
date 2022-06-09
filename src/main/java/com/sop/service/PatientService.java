@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @AllArgsConstructor
@@ -26,6 +27,7 @@ public class PatientService {
         } else {
             return patientRepository.findAll()
                     .stream()
+                    .filter(patientEntity -> Objects.isNull(patientEntity.getDischargeDate()))
                     .map(PatientDto::of)
                     .toList();
         }
