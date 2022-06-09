@@ -50,7 +50,7 @@ public class UserEntity {
                 .id(this.id)
                 .email(user.getEmail())
                 .login(user.getLogin())
-                .password(new BCryptPasswordEncoder().encode(user.getPassword()))
+                .password(user.getPassword())
                 .role(user.getRole())
                 .build();
     }
