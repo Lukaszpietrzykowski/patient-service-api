@@ -16,6 +16,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Objects;
 
 @Entity
 @Table(name = "SOP_USER")
@@ -40,17 +41,17 @@ public class UserEntity {
         return UserEntity.builder()
                 .email(user.getEmail())
                 .login(user.getLogin())
-                .password(new BCryptPasswordEncoder().encode(user.getPassword()))
+                .password(Objects.isNull(user.getPassword()) ? null : new BCryptPasswordEncoder().encode(user.getPassword()))
                 .role(user.getRole())
                 .build();
     }
 
-    public UserEntity updateWith(UserEntity user) {
+    public UserEntity updateWith(UserEntity user, String oldPassword) {
         return UserEntity.builder()
                 .id(this.id)
                 .email(user.getEmail())
                 .login(user.getLogin())
-                .password(user.getPassword())
+                .password(Objects.isNull(user.getPassword()) ? oldPassword : user.getPassword())
                 .role(user.getRole())
                 .build();
     }

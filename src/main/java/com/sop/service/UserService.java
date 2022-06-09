@@ -37,7 +37,7 @@ public class UserService {
     public UserDto updateUser(Long id, UserCreator userCreator) {
         return UserDto.of(repository.findById(id)
                 .map(oldUser -> {
-                    UserEntity updatedUser = oldUser.updateWith(UserEntity.of(userCreator));
+                    UserEntity updatedUser = oldUser.updateWith(UserEntity.of(userCreator), oldUser.getPassword());
                     return repository.save(updatedUser);
                 })
                 .orElseThrow());
