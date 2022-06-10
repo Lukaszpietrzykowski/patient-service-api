@@ -24,6 +24,8 @@ public class PatientDto {
     private PriorityEnum priority;
     private LocalDateTime dischargeDate;
     private LocalDateTime registrationDate;
+    private long hospitalId;
+    private long departmentId;
 
     public static PatientDto of(PatientEntity patient) {
         return PatientDto.builder()
@@ -37,6 +39,8 @@ public class PatientDto {
                 .priority(patient.getPriority())
                 .dischargeDate(patient.getDischargeDate())
                 .registrationDate(patient.getRegistrationDate())
+                .hospitalId(patient.getDepartment().getHospital().getId())
+                .departmentId(patient.getDepartment().getId())
                 .build();
     }
 
