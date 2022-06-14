@@ -53,5 +53,11 @@ public class DepartmentDto {
                     .filter(department -> department.getRemainingBeds() > 0)
                     .toList();
         }
+
+        public static List<DepartmentDtoShort> listOfWithDetails(List<DepartmentEntity> departments) {
+            return departments.stream()
+                    .map(DepartmentDtoShort::of)
+                    .toList();
+        }
     }
 }

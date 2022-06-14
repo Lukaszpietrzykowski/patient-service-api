@@ -24,4 +24,13 @@ public class HospitalDto {
                 .departments(DepartmentDto.DepartmentDtoShort.listOf(hospital.getDepartments()))
                 .build();
     }
+
+    public static HospitalDto ofWithDetails(HospitalEntity hospital) {
+        return HospitalDto.builder()
+                .id(hospital.getId())
+                .name(hospital.getName())
+                .address(AddressDto.of(hospital.getAddress()))
+                .departments(DepartmentDto.DepartmentDtoShort.listOfWithDetails(hospital.getDepartments()))
+                .build();
+    }
 }

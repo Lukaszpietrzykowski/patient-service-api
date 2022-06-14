@@ -1,6 +1,7 @@
 package com.sop.controller;
 
 import com.sop.creators.HospitalCreator;
+import com.sop.dto.DepartmentDto;
 import com.sop.dto.HospitalDto;
 import com.sop.service.HospitalService;
 import lombok.AllArgsConstructor;
@@ -27,9 +28,20 @@ public class HospitalController {
         return hospitalService.getHospitals();
     }
 
+    @GetMapping("/all/details")
+    public List<HospitalDto> getHospitalListWithDetails() {
+        return hospitalService.getHospitalsDetails();
+    }
+
     @GetMapping("/{id}")
-    public HospitalDto getHospitals(@PathVariable long id) {
+    public HospitalDto getHospital(@PathVariable long id) {
         return hospitalService.getHospital(id);
+
+    }
+
+    @GetMapping("/{id}/departments")
+    public List<DepartmentDto.DepartmentDtoShort> getHospitalDepartments(@PathVariable long id) {
+        return hospitalService.getHospitalDepartments(id);
     }
 
     @PostMapping("/add")
