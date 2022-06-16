@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -51,6 +52,7 @@ public class PatientEntity {
     @JoinColumn(name = "department_id")
     DepartmentEntity department;
 
+    @Column(length = 65000)
     private String medicalHistory;
 
     public PatientEntity updateWith(PatientEntity patient) {
