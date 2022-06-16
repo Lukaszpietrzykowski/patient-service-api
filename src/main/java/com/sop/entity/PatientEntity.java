@@ -18,9 +18,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.Period;
 
 @Entity
 @Table(name = "PATIENT")
@@ -52,6 +50,8 @@ public class PatientEntity {
     @ManyToOne
     @JoinColumn(name = "department_id")
     DepartmentEntity department;
+
+    private String medicalHistory;
 
     public PatientEntity updateWith(PatientEntity patient) {
         patient.setId(this.getId());

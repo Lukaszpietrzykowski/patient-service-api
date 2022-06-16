@@ -26,6 +26,7 @@ public class PatientDto {
     private LocalDateTime registrationDate;
     private long hospitalId;
     private long departmentId;
+    private String medicalHistory;
 
     public static PatientDto of(PatientEntity patient) {
         return PatientDto.builder()
@@ -41,6 +42,7 @@ public class PatientDto {
                 .registrationDate(patient.getRegistrationDate())
                 .hospitalId(patient.getDepartment().getHospital().getId())
                 .departmentId(patient.getDepartment().getId())
+                .medicalHistory(patient.getMedicalHistory())
                 .build();
     }
 

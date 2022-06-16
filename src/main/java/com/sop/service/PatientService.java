@@ -33,6 +33,11 @@ public class PatientService {
         }
     }
 
+    public void updateMedicalHistory(long id, String patientTextInformation) {
+        PatientEntity patientId = patientRepository.getById(id);
+        patientId.setMedicalHistory(patientTextInformation);
+    }
+
     public PatientDto getPatient(long id) {
         return PatientDto.of(
                 patientRepository.findById(id).orElseThrow(() -> new RuntimeException("Error patient doesn't exist"))
