@@ -34,8 +34,9 @@ public class PatientService {
     }
 
     public void updateMedicalHistory(long id, String patientTextInformation) {
-        PatientEntity patientId = patientRepository.getById(id);
-        patientId.setMedicalHistory(patientTextInformation);
+        PatientEntity patient = patientRepository.getById(id);
+        patient.setMedicalHistory(patientTextInformation);
+        patientRepository.save(patient);
     }
 
     public PatientDto getPatient(long id) {
