@@ -26,6 +26,11 @@ public class PatientController {
         return patientService.getPatient(id);
     }
 
+    @GetMapping("/archived/all")
+    public List<PatientDto> getArchivedPatients() {
+        return patientService.getArchivedPatients();
+    }
+
     @PostMapping("/add")
     public void createPatient(@RequestBody PatientCreator patient) {
         patientService.createPatient(patient);

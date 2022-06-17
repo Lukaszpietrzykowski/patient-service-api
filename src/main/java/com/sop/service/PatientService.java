@@ -33,6 +33,18 @@ public class PatientService {
         }
     }
 
+    public List<PatientDto> getArchivedPatients() {
+        if (patientRepository.findAll().isEmpty()) {
+            throw new RuntimeException("Cound not find any patients on list");
+        } else {
+            return patientRepository.findAll()
+                    .stream()
+                    .filter(patientEntity -> Objects.nonNull(patientEntity.getDischargeDate()))
+                    .map(PatientDto::of)
+                    .toList();
+        }
+    }
+
     public PatientDto getPatient(long id) {
         return PatientDto.of(
                 patientRepository.findById(id).orElseThrow(() -> new RuntimeException("Error patient doesn't exist"))
