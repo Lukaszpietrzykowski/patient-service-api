@@ -1,6 +1,7 @@
 package com.sop.service;
 
 import com.sop.creators.HospitalCreator;
+import com.sop.dto.DepartmentDto;
 import com.sop.dto.HospitalDto;
 import com.sop.entity.AddressEntity;
 import com.sop.entity.HospitalEntity;
@@ -34,9 +35,22 @@ public class HospitalService {
                 .toList();
     }
 
+    public List<HospitalDto> getHospitalsDetails() {
+        return hospitalRepository.findAll()
+                .stream()
+                .map(HospitalDto::ofWithDetails)
+                .toList();
+    }
+
     public HospitalDto getHospital(Long id) {
         return HospitalDto.of(hospitalRepository.findById(id)
                 .orElseThrow());
+
+    }
+
+    public List<DepartmentDto.DepartmentDtoShort> getHospitalDepartments(Long id) {
+        return HospitalDto.ofWithDetails(hospitalRepository.findById(id)
+                .orElseThrow()).getDepartments();
 
     }
 

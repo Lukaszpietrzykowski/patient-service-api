@@ -6,7 +6,6 @@ import com.sop.service.PatientService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -44,6 +43,11 @@ public class PatientController {
     @PutMapping("/update/{id}")
     public void updatePatient(@PathVariable long id, @RequestBody PatientCreator patient) {
         patientService.updatePatient(id,patient);
+    }
+
+    @PutMapping("/update/medical-history/{id}")
+    public void updateMedicalHistory(@PathVariable long id, @RequestBody String medicalHistory) {
+        patientService.updateMedicalHistory(id, medicalHistory);
     }
 
     @DeleteMapping("/delete/{id}")

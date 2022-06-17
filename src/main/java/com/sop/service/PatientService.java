@@ -33,6 +33,12 @@ public class PatientService {
         }
     }
 
+    public void updateMedicalHistory(long id, String patientTextInformation) {
+        PatientEntity patient = patientRepository.getById(id);
+        patient.setMedicalHistory(patientTextInformation);
+        patientRepository.save(patient);
+    }
+
     public List<PatientDto> getArchivedPatients() {
         if (patientRepository.findAll().isEmpty()) {
             throw new RuntimeException("Cound not find any patients on list");
@@ -63,9 +69,11 @@ public class PatientService {
     }
 
     public void updatePatient(long id, PatientCreator patient) {
+        DepartmentEntity departmentEntity = departmentRepository.findById(patient.getDepartmentId()).orElse(null);
         patientRepository.findById(id)
                 .map(oldPatient -> {
                     PatientEntity updatedPatient = oldPatient.updateWith(PatientEntity.of(patient, patient.getRegistrationDate()));
+                    updatedPatient.setDepartment(departmentEntity);
                     return patientRepository.save(updatedPatient);
                 })
                 .orElseThrow(() -> new RuntimeException("Patient doesn't exist"));

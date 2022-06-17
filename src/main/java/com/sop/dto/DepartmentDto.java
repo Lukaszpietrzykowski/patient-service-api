@@ -31,15 +31,30 @@ public class DepartmentDto {
     public static class DepartmentDtoShort {
         private long id;
         private String name;
+        private long availableBeds;
+        private long remainingBeds;
 
         public static DepartmentDtoShort of(DepartmentEntity department) {
             return DepartmentDtoShort.builder().
                     id(department.getId())
                     .name(department.getName())
+                    .availableBeds(department.getAvailableBeds())
+                    .remainingBeds(getRemainingBeds(department))
                     .build();
         }
 
+        private static long getRemainingBeds(DepartmentEntity department) {
+            return department.getAvailableBeds() - department.getPatients().size();
+        }
+
         public static List<DepartmentDtoShort> listOf(List<DepartmentEntity> departments) {
+            return departments.stream()
+                    .map(DepartmentDtoShort::of)
+                    .filter(department -> department.getRemainingBeds() > 0)
+                    .toList();
+        }
+
+        public static List<DepartmentDtoShort> listOfWithDetails(List<DepartmentEntity> departments) {
             return departments.stream()
                     .map(DepartmentDtoShort::of)
                     .toList();
