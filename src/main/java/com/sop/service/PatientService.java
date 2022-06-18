@@ -58,10 +58,19 @@ public class PatientService {
     }
 
     public void createPatient(PatientCreator patient) {
-        DepartmentEntity department = departmentRepository.getById(patient.getDepartmentId());
-        PatientEntity patientEntity = PatientEntity.of(patient, LocalDateTime.now());
-        patientEntity.setDepartment(department);
-        patientRepository.save(patientEntity);
+        PatientEntity patientEntityByPesel = null;
+        if (Objects.nonNull(patient.getPesel())) {
+            patientEntityByPesel = patientRepository.getPatientEntityByPesel(patient.getPesel());
+        }
+        if (Objects.nonNull(patientEntityByPesel)) {
+            patientEntityByPesel.setDischargeDate(null);
+            patientRepository.save(patientEntityByPesel);
+        } else {
+            DepartmentEntity department = departmentRepository.getById(patient.getDepartmentId());
+            PatientEntity patientEntity = PatientEntity.of(patient, LocalDateTime.now());
+            patientEntity.setDepartment(department);
+            patientRepository.save(patientEntity);
+        }
     }
 
     public void createVisit(PatientCreator patient) {

@@ -4,7 +4,14 @@ import com.sop.creators.PatientCreator;
 import com.sop.dto.PatientDto;
 import com.sop.service.PatientService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -42,7 +49,7 @@ public class PatientController {
 
     @PutMapping("/update/{id}")
     public void updatePatient(@PathVariable long id, @RequestBody PatientCreator patient) {
-        patientService.updatePatient(id,patient);
+        patientService.updatePatient(id, patient);
     }
 
     @PutMapping("/update/medical-history/{id}")
