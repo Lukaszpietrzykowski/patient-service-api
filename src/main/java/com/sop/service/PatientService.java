@@ -59,7 +59,7 @@ public class PatientService {
 
     public void createPatient(PatientCreator patient) {
         PatientEntity patientEntityByPesel = null;
-        if (Objects.nonNull(patient.getPesel())) {
+        if (Objects.nonNull(patient.getPesel()) && !patient.getPesel().isEmpty()) {
             patientEntityByPesel = patientRepository.getPatientEntityByPesel(patient.getPesel());
         }
         if (Objects.nonNull(patientEntityByPesel)) {
