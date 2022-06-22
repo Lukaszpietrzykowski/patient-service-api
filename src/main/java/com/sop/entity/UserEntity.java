@@ -18,6 +18,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Objects;
 
+/**
+ * Klasa reprezentująca użytkowników (obiekty/rekordy) znajdujące się w bazie danych.
+ */
 @Entity
 @Table(name = "SOP_USER")
 @AllArgsConstructor
@@ -25,19 +28,39 @@ import java.util.Objects;
 @Getter
 @Builder
 public class UserEntity {
+
+    /**
+     * Zmienna typu long przechowująca id użytkownika.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    /**
+     * Zmienna typu String przechowująca adres mialowy użytkownika.
+     */
     private String email;
+    /**
+     * Zmienna typu String przechowująca login użytkownika.
+     */
     private String login;
+    /**
+     * Zmienna typu String przechowująca hasło użytkownika.
+     */
     private String password;
 
+    /**
+     * Zmienna typu RoleEnum przechowująca role użytkownika.
+     */
     @Enumerated(EnumType.STRING)
     private RoleEnum role;
 
+    /**
+     * Konwertuje obiekt klasy UserCreator na obiekt klasy UserEntity.
+     * @param user zmienna przechowująca użytkownika typu UserCreator który chcemy przekonwertować.
+     * @return zwraca przekonwertowanego użytkownika typu UserEntity.
+     */
     public static UserEntity of(UserCreator user) {
-
         return UserEntity.builder()
                 .email(user.getEmail())
                 .login(user.getLogin())
@@ -46,6 +69,12 @@ public class UserEntity {
                 .build();
     }
 
+    /**
+     * Edytuje pacjenta.
+     * @param user zmienna przechowujący użytkownika typu PatientEntity, przekazany do edycji.
+     * @param oldPassword stare hasło użytkownika.
+     * @return zwraca zedytowanego użytkownika typu UserEntity.
+     */
     public UserEntity updateWith(UserEntity user, String oldPassword) {
         return UserEntity.builder()
                 .id(this.id)

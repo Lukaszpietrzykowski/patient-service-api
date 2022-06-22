@@ -15,33 +15,64 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * Klasa UserController to klasa zawierająca funkcjonalności wykorzystywane
+ * w tworzeniu REST API umożliwijąca wszelkie operacje związane z oddziałem szpitala.
+ */
 @RestController
 @AllArgsConstructor
 @RequestMapping("/department")
 public class DepartmentController {
 
+    /**
+     * Przechowuję obiekt typu DepartmentService.
+     */
     private final DepartmentService departmentService;
 
+    /**
+     * Zwraca listę wszystkich dostępnych oddziałów typu DepartmentDto.
+     * @return zwraca listę wszystkich oddziałów.
+     */
     @GetMapping("/all")
     public List<DepartmentDto> getDepartments() {
         return departmentService.getDepartments();
     }
 
+    /**
+     * Zwraca obiekt typu DepartmentDto na podstawie podanego adresu id.
+     * @param id oddziału.
+     * @return zwraca znaleziony oddział typu DepartmentDto.
+     */
     @GetMapping("/{id}")
     public DepartmentDto findDepartmentById(@PathVariable long id) {
         return departmentService.getDepartment(id);
     }
 
+    /**
+     * Tworzy oddział.
+     * @param department obiekt typu DepartmentCreator przechowujący oddział.
+     * @return zwraca dodany oddział typu DepartmentDto.
+     */
     @PostMapping("/add")
     public DepartmentDto addDepartment(@RequestBody DepartmentCreator department) {
         return departmentService.createDepartment(department);
     }
 
+    /**
+     * Edytuje oddział o podanym id.
+     * @param id oddziału.
+     * @param department obiekt typu DepartmentCreator przechowujący oddział.
+     * @return zwraca zedytowany oddział typu DepartmentDto.
+     */
     @PutMapping("/update/{id}")
     public DepartmentDto updateDepartment(@PathVariable long id, @RequestBody DepartmentCreator department) {
         return departmentService.updateDepartment(id, department);
     }
 
+    /**
+     * Usuwa oddział szpitalu na podstawie podanego id.
+     * @param id oddziału.
+     */
     @DeleteMapping("/delete/{id}")
     public void deleteDepartment(@PathVariable long id) {
         departmentService.deleteDepartment(id);

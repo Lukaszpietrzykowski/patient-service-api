@@ -1,5 +1,6 @@
 package com.sop;
 
+import com.sop.controller.AddressController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

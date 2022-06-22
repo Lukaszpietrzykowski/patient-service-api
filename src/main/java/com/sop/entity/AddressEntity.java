@@ -12,6 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Klasa reprezentująca adresy (obiekty/rekordy) znajdujące się w bazie danych.
+ */
 @Entity
 @Table(name = "ADDRESS")
 @AllArgsConstructor
@@ -20,18 +23,41 @@ import javax.persistence.Table;
 @Builder
 public class AddressEntity {
 
+    /**
+     * Zmienna typu long przechowująca id adresu.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    /**
+     * Zmienna typu String przechowująca nazwę miasta.
+     */
     private String city;
+    /**
+     * Zmienna typu String przechowująca nazwę ulicy.
+     */
     private String street;
+    /**
+     * Zmienna typu String przechowująca numer budynku.
+     */
     private String streetNumber;
+    /**
+     * Zmienna typu String przechowująca kod pocztowy.
+     */
     private String postalCode;
+    /**
+     * Zmienna typu String przechowująca nazwę kraju.
+     */
     private String country;
-    private double lat;
-    private double lng;
+    private double lat; // one chyba do wywalenia są
+    private double lng; // one chyba do wywalenia są
 
+    /**
+     * Konwertuje obiekt klasy AddressCreator na obiekt klasy AddressEntity.
+     * @param address zmienna przechowujący adres typu AddressCreator który chcemy przekonwertować.
+     * @return zwraca przekonwertowany adres typu AddressEntity.
+     */
     public static AddressEntity of(AddressCreator address) {
         return AddressEntity.builder()
                 .city(address.getCity())
@@ -44,6 +70,11 @@ public class AddressEntity {
                 .build();
     }
 
+    /**
+     * Edytuję adres.
+     * @param address zmienna przechowujący adres typu AddressEntity, przekazany do edycji.
+     * @return zwraca zedytowany adres typu AddressEntity.
+     */
     public AddressEntity updateWith(AddressEntity address) {
         return AddressEntity.builder()
                 .id(this.id)

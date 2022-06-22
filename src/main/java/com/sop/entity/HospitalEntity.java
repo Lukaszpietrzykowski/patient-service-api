@@ -19,6 +19,9 @@ import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Klasa reprezentująca szpitale (obiekty/rekordy) znajdujące się w bazie danych.
+ */
 @Entity
 @Table(name = "HOSPITAL")
 @AllArgsConstructor
@@ -28,19 +31,36 @@ import java.util.List;
 @Builder
 public class HospitalEntity {
 
+    /**
+     * Zmienna typu long przechowująca id szpitala.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    /**
+     *  Zmienna typu String przechowująca nazwę szpitala.
+     */
     private String name;
 
+    /**
+     * Zmienna typu AddressEntity przechowująca adres szpitala.
+     */
     @OneToOne
     @JoinColumn(name = "address_id")
     private AddressEntity address;
 
+    /**
+     *  Lista przechowująca oddziały typu DepartmentEntity.
+     */
     @OneToMany(mappedBy = "hospital", cascade = CascadeType.REMOVE)
     private List<DepartmentEntity> departments = new ArrayList<>();
 
+    /**
+     * Konwertuje obiekt klasy HospitalCreator na obiekt klasy HospitalEntity.
+     * @param hospital zmienna przechowujący szpital typu HospitalCreator który chcemy przekonwertować..
+     * @return zwraca przekonwertowany szpital typu HospitalEntity.
+     */
     public static HospitalEntity of(HospitalCreator hospital) {
         return HospitalEntity.builder()
                 .name(hospital.getName())
@@ -48,6 +68,11 @@ public class HospitalEntity {
                 .build();
     }
 
+    /**
+     * Edutuje szpital.
+     * @param hospital zmienna przechowujący szpital typu HospitalEntity, przekazany do edycji.
+     * @return zwraca zedytowany szpital typu HospitalEntity.
+     */
     public HospitalEntity updateWith(HospitalEntity hospital) {
         return HospitalEntity.builder()
                 .id(this.id)

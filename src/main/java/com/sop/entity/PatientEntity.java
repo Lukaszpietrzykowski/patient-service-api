@@ -9,7 +9,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -21,6 +20,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
 
+/**
+ * Klasa reprezentująca pacjentów (obiekty/rekordy) znajdujące się w bazie danych.
+ */
 @Entity
 @Table(name = "PATIENT")
 @AllArgsConstructor
@@ -29,37 +31,83 @@ import java.time.LocalDateTime;
 @Builder
 @Setter
 public class PatientEntity {
+    /**
+     * Zmienna przechowująca adres id pacjenta.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    /**
+     * Zmienna typu String przechowująca imię pacjenta.
+     */
     private String firstName;
+    /**
+     * Zmienna typu String przechowująca nazwę pacjenta.
+     */
     private String lastName;
+    /**
+     * Zmienna typu String przechowująca pesel pacjenta.
+     */
     private String pesel;
+    /**
+     * Zmienna typu Long przechowująca wiek użytkownika.
+     */
     private long age;
+    /**
+     * Zmienna typu LocalDateTime przechowująca datę urodzenia pacjenta.
+     */
     private LocalDateTime birthDate;
 
+    /**
+     * Zmienna typu GenderEnum przechowująca płeć pacjenta.
+     */
     @Enumerated(EnumType.STRING)
     private GenderEnum gender;
 
+    /**
+     * Zmienna typu PriorityEnum przechowująca priorytet pacjenta.
+     */
     @Enumerated(EnumType.STRING)
     private PriorityEnum priority;
 
+    /**
+     * Zmienna typu LocalDateTime przechowująca datę wypisania pacjenta.
+     */
     private LocalDateTime dischargeDate;
+    /**
+     * Zmienna typu LocalDateTime przechowująca datę rejestracji pacjenta.
+     */
     private LocalDateTime registrationDate;
 
+    /**
+     * Zmienna typu DepartmentEntity przechowująca oddział w którym znajduję się pacjent.
+     */
     @ManyToOne
     @JoinColumn(name = "department_id")
     DepartmentEntity department;
 
-    @Column(length = 65000)
+    /**
+     * Zmienna typu String przechowująca historię medyczną pacjenta.
+     */
     private String medicalHistory;
 
+    /**
+     * Edytuje pacjenta.
+     * @param patient zmienna przechowujący pacjenta typu PatientEntity, przekazany do edycji.
+     * @return zwraca zedytowanego pacjenta typu PatientEntity.
+     */
     public PatientEntity updateWith(PatientEntity patient) {
         patient.setId(this.getId());
         return patient;
     }
 
+    /**
+     * Konwertuje obiekt klasy PatientCreator na obiekt klasy PatientEntity.
+     * @param patient zmienna przechowująca pacjenta typu PatientCreator który chcemy przekonwertować.
+     * @param registrationDate data rejestracji pacjenta.
+     * @return zwraca przekonwertowanego pacjenta typu PatientEntity.
+     */
     public static PatientEntity of(PatientCreator patient, LocalDateTime registrationDate) {
         return PatientEntity.builder()
                 .firstName(patient.getFirstName())
