@@ -83,6 +83,7 @@ public class PatientService {
                 .map(oldPatient -> {
                     PatientEntity updatedPatient = oldPatient.updateWith(PatientEntity.of(patient, patient.getRegistrationDate()));
                     updatedPatient.setDepartment(departmentEntity);
+                    updatedPatient.setMedicalHistory(oldPatient.getMedicalHistory());
                     return patientRepository.save(updatedPatient);
                 })
                 .orElseThrow(() -> new RuntimeException("Patient doesn't exist"));
