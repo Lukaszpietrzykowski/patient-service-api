@@ -19,18 +19,35 @@ import static org.springframework.http.HttpHeaders.ACCESS_CONTROL_ALLOW_HEADERS;
 import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
 import static org.springframework.http.HttpHeaders.SET_COOKIE;
 
+/**
+ * Klasa konfigurująca zabezpieczenia i logowanie aplikacji dziedzicząca z klasy {@link WebSecurityConfigurerAdapter}
+ */
 @Configuration
 @EnableWebSecurity
 @AllArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    /**
+     * Przechowuje obiekt typu {@link UserDetailsServiceImpl}
+     */
     private final UserDetailsServiceImpl userDetailsService;
 
+    /**
+     * Metoda tworząca {@link BCryptPasswordEncoder}
+     *
+     * @return zwraca nowy {@link BCryptPasswordEncoder}
+     */
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * Metoda tworząca obiekt do zarządzania danymi użytjownika
+     * przez obiekt typu {@link DaoAuthenticationProvider}
+     *
+     * @return zwraca obiket typu {@link DaoAuthenticationProvider}
+     */
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -39,11 +56,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return authProvider;
     }
 
+    /**
+     * Metoda konfigurująca zarządzanie danymi użytkownika przez {@link AuthenticationManagerBuilder}
+     *
+     * @param auth obiekt zarządzający autentyfikacją oraz przekazywaniem danych użytkownika
+     */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) {
         auth.authenticationProvider(authenticationProvider());
     }
 
+    /**
+     * Metoda konfigurująca połączenia, autentyfikacje, zarządzanie plikami cookies,
+     * zabezpieczeniem stron oraz dostępem do zasobów aplikacji
+     *
+     * @throws Exception wyrzuca wyjąctek w razie błędów
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors()
@@ -67,10 +95,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .deleteCookies("JSESSIONID")
                 .and()
                 .authorizeRequests()
-                .mvcMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html"    ).permitAll()
+                .mvcMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                 .anyRequest().authenticated();
     }
 
+    /**
+     * Metoda tworząca obiekt typu {@link CorsConfiguration} umożliwiający współdzielnie zasobów między
+     * serwerami w różnych domenach
+     *
+     * @return zwraca skonfigurowany obiekt implementujący interfejs {@link CorsConfigurationSource}
+     */
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
