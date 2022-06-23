@@ -50,7 +50,7 @@ public class PatientController {
         return patientService.getPatient(id);
     }
 
-    @GetMapping("/admin/archived/all/")
+    @GetMapping("/archived/all")
     public List<PatientDto> getArchivedPatients() {
         return patientService.getArchivedPatients();
     }
