@@ -39,27 +39,28 @@ public class HospitalEntity {
     private long id;
 
     /**
-     *  Zmienna typu String przechowująca nazwę szpitala.
+     * Zmienna typu String przechowująca nazwę szpitala.
      */
     private String name;
 
     /**
-     * Zmienna typu AddressEntity przechowująca adres szpitala.
+     * Zmienna typu {@link AddressEntity} przechowująca adres szpitala.
      */
     @OneToOne
     @JoinColumn(name = "address_id")
     private AddressEntity address;
 
     /**
-     *  Lista przechowująca oddziały typu DepartmentEntity.
+     * Lista przechowująca oddziały typu {@link DepartmentEntity}.
      */
     @OneToMany(mappedBy = "hospital", cascade = CascadeType.REMOVE)
     private List<DepartmentEntity> departments = new ArrayList<>();
 
     /**
-     * Konwertuje obiekt klasy HospitalCreator na obiekt klasy HospitalEntity.
-     * @param hospital zmienna przechowujący szpital typu HospitalCreator który chcemy przekonwertować..
-     * @return zwraca przekonwertowany szpital typu HospitalEntity.
+     * Konwertuje obiekt klasy {@link HospitalCreator} na obiekt klasy {@link HospitalEntity}.
+     *
+     * @param hospital zmienna przechowujący szpital typu {@link HospitalCreator} który chcemy przekonwertować..
+     * @return zwraca przekonwertowany szpital typu {@link HospitalEntity}.
      */
     public static HospitalEntity of(HospitalCreator hospital) {
         return HospitalEntity.builder()
@@ -70,8 +71,9 @@ public class HospitalEntity {
 
     /**
      * Edutuje szpital.
-     * @param hospital zmienna przechowujący szpital typu HospitalEntity, przekazany do edycji.
-     * @return zwraca zedytowany szpital typu HospitalEntity.
+     *
+     * @param hospital zmienna przechowujący szpital typu {@link HospitalEntity}, przekazany do edycji.
+     * @return zwraca zedytowany szpital typu {@link HospitalEntity}.
      */
     public HospitalEntity updateWith(HospitalEntity hospital) {
         return HospitalEntity.builder()

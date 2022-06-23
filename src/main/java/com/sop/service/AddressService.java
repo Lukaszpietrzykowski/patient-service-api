@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * Klasa używająca interfejsu {@link AddressRepository} która pozwala zarządać operacjami CRUD
+ * Klasa używająca interfejsu {@link AddressRepository} który pozwala zarządać operacjami CRUD
  * na bazie danych
  */
 @Service
@@ -23,9 +23,9 @@ public class AddressService {
     private final AddressRepository addressRepository;
 
     /**
-     * Metoda tworząca rekord w bazie danych typu {@link AddressEntity} używając {@link AddressRepository}
+     * Metoda tworząca rekord w bazie danych typu {@link AddressEntity}
      *
-     * @param addressCreator obiekt typu {@link AddressCreator} przechowujący adres szpitalu wykorzystywany do stworzenia rekordu
+     * @param addressCreator obiekt typu {@link AddressCreator} przechowujący dane adresu szpitala wykorzystywany do stworzenia rekordu
      * @return zwraca stworzony rekord z bazy danych przekonwertowany na obiekt typu {@link AddressDto}
      */
     public AddressDto createAddress(AddressCreator addressCreator) {
@@ -53,14 +53,14 @@ public class AddressService {
      */
     public AddressDto getAddress(Long id) {
         return AddressDto.of(addressRepository.findById(id)
-                .orElseThrow());
+                .orElseThrow(() -> new RuntimeException("Error address doesn't exist")));
     }
 
     /**
      * Metoda aktualizująca rekord {@link AddressEntity} w bazie danych i mapująca go na obiekt typu {@link AddressDto}
      * W przypadku braku rekordu o podanym ID wyrzuca błąd o braku ów rekordu
      *
-     * @param id             jest to ID rekordu w bazie danych
+     * @param id             jest to ID  rekordu w bazie danych
      * @param addressCreator jest to obiekt typu {@link AddressCreator} który ma być zapisany w miejscu rekordu o podanym ID
      * @return zwraca zaktualizowany obiekt typu {@link AddressDto}
      */
@@ -70,16 +70,15 @@ public class AddressService {
                     AddressEntity updatedAddress = oldAddress.updateWith(AddressEntity.of(addressCreator));
                     return addressRepository.save(updatedAddress);
                 })
-                .orElseThrow());
+                .orElseThrow(() -> new RuntimeException("Error address doesn't exist")));
     }
 
     /**
-     * metoda usuwająca rekord {@link AddressEntity} z bazy danych
+     * Metoda usuwająca rekord {@link AddressEntity} z bazy danych
      *
-     * @param id jest to id rekordu który chcemy usunąć
+     * @param id jest to ID rekordu w bazie danych
      */
     public void deleteAddress(Long id) {
         addressRepository.deleteById(id);
     }
 }
-

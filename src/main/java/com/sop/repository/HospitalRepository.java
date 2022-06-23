@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 /**
  * Interfejs HospitalRepository to interfejs pozwalający na zarządzanie danych w bazie danych
  * poprzez obiekt {@link HospitalEntity}
- * używa on wbudowanych funkcjonalności z JpaRepository
+ * używa on wbudowanych funkcjonalności z {@link JpaRepository}
  *
  * @see org.springframework.data.jpa.repository.JpaRepository
  */

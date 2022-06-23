@@ -1,8 +1,23 @@
 package com.sop.enums;
 
+/**
+ * Role jakie mogą być przypisane do użytkownika
+ */
 public enum RoleEnum {
+    /**
+     * Rola admina
+     */
     ADMIN,
-    DOCTOR,
+    /**
+     * Rola dyspozytora
+     */
     DISPATCHER,
+    /**
+     * Rola doktora
+     */
+    DOCTOR,
+    /**
+     * Rola ratownika
+     */
     PARAMEDIC;
 }

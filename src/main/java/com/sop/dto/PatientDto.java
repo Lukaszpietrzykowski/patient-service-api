@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * Klasa przechowująca DTO (Data Transfer Object) dla klasy PatientEntity, służąca do operacji na pacjencie.
+ * Klasa przechowująca DTO (Data Transfer Object) dla klasy {@link PatientEntity}, służąca do operacji na pacjencie.
  */
 @AllArgsConstructor
 @Builder
@@ -34,7 +34,7 @@ public class PatientDto {
      */
     private String pesel;
     /**
-     * Zmienna typu LocalDateTime przechowująca datę urodzenia pacjenta.
+     * Zmienna typu {@link LocalDateTime} przechowująca datę urodzenia pacjenta.
      */
     private LocalDateTime birthDate;
     /**
@@ -42,19 +42,19 @@ public class PatientDto {
      */
     private long age;
     /**
-     * Zmienna typu GenderEnum przechowująca płeć pacjenta.
+     * Zmienna typu {@link GenderEnum} przechowująca płeć pacjenta.
      */
     private GenderEnum gender;
     /**
-     * Zmienna typu PriorityEnum przechowująca priorytet pacjenta.
+     * Zmienna typu {@link PriorityEnum} przechowująca priorytet pacjenta.
      */
     private PriorityEnum priority;
     /**
-     * Zmienna typu LocalDateTime przechowująca datę wypisania pacjenta.
+     * Zmienna typu {@link LocalDateTime} przechowująca datę wypisania pacjenta.
      */
     private LocalDateTime dischargeDate;
     /**
-     * Zmienna typu LocalDateTime przechowująca datę rejestracji pacjenta.
+     * Zmienna typu {@link LocalDateTime} przechowująca datę rejestracji pacjenta.
      */
     private LocalDateTime registrationDate;
     /**
@@ -71,9 +71,10 @@ public class PatientDto {
     private String medicalHistory;
 
     /**
-     * Konwertuje obiekt klasy PatientEntity na obiekt klasy PatientDto.
-     * @param patient zmienna przechowująca pacjenta typu PatientEntity który chcemy przekonwertować.
-     * @return zwraca przekonwertowanego pacjenta typu PatientDto.
+     * Konwertuje obiekt klasy {@link PatientEntity} na obiekt klasy {@link PatientDto}.
+     *
+     * @param patient zmienna przechowująca pacjenta typu {@link PatientEntity} który chcemy przekonwertować.
+     * @return zwraca przekonwertowanego pacjenta typu {@link PatientDto}.
      */
     public static PatientDto of(PatientEntity patient) {
         return PatientDto.builder()
@@ -94,9 +95,10 @@ public class PatientDto {
     }
 
     /**
-     * Konwertuje listę przechowującą obiekty typu PatientEntity na listę zawierającą obiekty typu PatientDto
-     * @param patients lista przechowująca pacjentów typu PatientEntity.
-     * @return zwraca przekonwertowaną listę pacjentów typu PatientDto.
+     * Konwertuje listę przechowującą obiekty typu {@link PatientEntity} na listę zawierającą obiekty typu {@link PatientDto}
+     *
+     * @param patients lista przechowująca pacjentów typu {@link PatientEntity}.
+     * @return zwraca przekonwertowaną listę pacjentów typu {@link PatientDto}.
      */
     public static List<PatientDto> listOf(List<PatientEntity> patients) {
         return patients.stream()

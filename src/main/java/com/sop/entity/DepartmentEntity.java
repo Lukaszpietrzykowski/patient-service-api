@@ -43,13 +43,13 @@ public class DepartmentEntity {
     private String name;
 
     /**
-     * Zmienna przechowująca listę pacjentów typu PatientEntity.
+     * Zmienna przechowująca listę pacjentów typu {@link PatientEntity}.
      */
     @OneToMany(mappedBy = "department", cascade = CascadeType.REMOVE)
     private List<PatientEntity> patients = new ArrayList<>();
 
     /**
-     * Zmienna typu HospitalEntity przechowująca szpital.
+     * Zmienna typu {@link HospitalEntity} przechowująca szpital.
      */
     @ManyToOne
     @JoinColumn(name = "hospital_id")
@@ -60,9 +60,10 @@ public class DepartmentEntity {
     private long availableBeds;
 
     /**
-     * Konwertuje obiekt klasy DepartmentCreator na obiekt klasy DepartmentEntity.
-     * @param department zmienna przechowujący oddział typu DepartmentCreator który chcemy przekonwertować.
-     * @return zwraca przekonwertowany oddział typu DepartmentEntity.
+     * Konwertuje obiekt klasy {@link DepartmentCreator} na obiekt klasy {@link DepartmentEntity}.
+     *
+     * @param department zmienna przechowujący oddział typu {@link DepartmentCreator} który chcemy przekonwertować.
+     * @return zwraca przekonwertowany oddział typu {@link DepartmentEntity}.
      */
     public static DepartmentEntity of(DepartmentCreator department) {
         return DepartmentEntity.builder()
@@ -74,8 +75,9 @@ public class DepartmentEntity {
 
     /**
      * Edytuje oddział.
-     * @param department zmienna przechowujący oddział typu DepartmentEntity, przekazany do edycji.
-     * @return zwraca zedytowany oddział typu DepartmentEntity.
+     *
+     * @param department zmienna przechowujący oddział typu {@link DepartmentEntity}, przekazany do edycji.
+     * @return zwraca zedytowany oddział typu {@link DepartmentEntity}.
      */
     public DepartmentEntity updateWith(DepartmentEntity department) {
         return DepartmentEntity.builder()

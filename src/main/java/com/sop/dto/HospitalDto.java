@@ -8,7 +8,7 @@ import lombok.Getter;
 import java.util.List;
 
 /**
- * Klasa przechowująca DTO (Data Transfer Object) dla klasy HospitalEntity, służaca do operacji na szpitalu.
+ * Klasa przechowująca DTO (Data Transfer Object) dla klasy {@link HospitalEntity}, służaca do operacji na szpitalu.
  */
 @AllArgsConstructor
 @Builder
@@ -19,22 +19,23 @@ public class HospitalDto {
      */
     private long id;
     /**
-     *  Zmienna typu String przechowująca nazwę szpitala.
+     * Zmienna typu String przechowująca nazwę szpitala.
      */
     private String name;
     /**
-     * Zmienna typu AddressDto przechowująca adres szpitala.
+     * Zmienna typu {@link AddressDto} przechowująca adres szpitala.
      */
     private AddressDto address;
     /**
-     *  Lista przechowująca oddziały typu DepartmentDtoShort.
+     * Lista przechowująca oddziały typu {@link com.sop.dto.DepartmentDto.DepartmentDtoShort}.
      */
     private List<DepartmentDto.DepartmentDtoShort> departments;
 
     /**
-     * Konwertuje obiekt klasy HospitalEntity na obiekt klasy HospitalDto.
-     * @param hospital zmienna przechowująca szpital typu HospitalEntity który chcemy przekonwertować.
-     * @return zwraca przekonwertowany szpital typu HospitalDto jeżeli w szpitlu istnieją wolne łóżka.
+     * Konwertuje obiekt klasy {@link HospitalEntity} na obiekt klasy {@link HospitalDto}.
+     *
+     * @param hospital zmienna przechowująca szpital typu {@link HospitalEntity} który chcemy przekonwertować.
+     * @return zwraca przekonwertowany szpital typu {@link HospitalDto} jeżeli w szpitlu istnieją wolne łóżka.
      */
     public static HospitalDto of(HospitalEntity hospital) {
         return HospitalDto.builder()
@@ -46,9 +47,10 @@ public class HospitalDto {
     }
 
     /**
-     * Konwertuje obiekt klasy HospitalEntity na obiekt klasy HospitalDto.
-     * @param hospital zmienna przechowujący szpital typu HospitalEntity który chcemy przekonwertować.
-     * @return zwraca przekonwertowany szpital typu HospitalDto bez względu na ilość wolnych łóżek.
+     * Konwertuje obiekt klasy {@link HospitalEntity} na obiekt klasy {@link HospitalDto}.
+     *
+     * @param hospital zmienna przechowujący szpital typu {@link HospitalEntity} który chcemy przekonwertować.
+     * @return zwraca przekonwertowany szpital typu {@link HospitalDto} bez względu na ilość wolnych łóżek.
      */
     public static HospitalDto ofWithDetails(HospitalEntity hospital) {
         return HospitalDto.builder()

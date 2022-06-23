@@ -50,15 +50,16 @@ public class UserEntity {
     private String password;
 
     /**
-     * Zmienna typu RoleEnum przechowująca role użytkownika.
+     * Zmienna typu {@link RoleEnum} przechowująca role użytkownika.
      */
     @Enumerated(EnumType.STRING)
     private RoleEnum role;
 
     /**
-     * Konwertuje obiekt klasy UserCreator na obiekt klasy UserEntity.
-     * @param user zmienna przechowująca użytkownika typu UserCreator który chcemy przekonwertować.
-     * @return zwraca przekonwertowanego użytkownika typu UserEntity.
+     * Konwertuje obiekt klasy {@link UserCreator} na obiekt klasy {@link UserEntity}.
+     *
+     * @param user zmienna przechowująca użytkownika typu {@link UserCreator} który chcemy przekonwertować.
+     * @return zwraca przekonwertowanego użytkownika typu {@link UserEntity}.
      */
     public static UserEntity of(UserCreator user) {
         return UserEntity.builder()
@@ -71,9 +72,10 @@ public class UserEntity {
 
     /**
      * Edytuje pacjenta.
-     * @param user zmienna przechowujący użytkownika typu PatientEntity, przekazany do edycji.
+     *
+     * @param user        zmienna przechowujący użytkownika typu {@link PatientEntity}, przekazany do edycji.
      * @param oldPassword stare hasło użytkownika.
-     * @return zwraca zedytowanego użytkownika typu UserEntity.
+     * @return zwraca zedytowanego użytkownika typu {@link UserEntity}.
      */
     public UserEntity updateWith(UserEntity user, String oldPassword) {
         return UserEntity.builder()

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * Klasa UserController to klasa zawierająca funkcjonalności wykorzystywane
+ * Klasa DepartmentController to klasa zawierająca funkcjonalności wykorzystywane
  * w tworzeniu REST API umożliwijąca wszelkie operacje związane z oddziałem szpitala.
  */
 @RestController
@@ -25,12 +25,13 @@ import java.util.List;
 public class DepartmentController {
 
     /**
-     * Przechowuję obiekt typu DepartmentService.
+     * Przechowuję obiekt typu {@link DepartmentService}.
      */
     private final DepartmentService departmentService;
 
     /**
-     * Zwraca listę wszystkich dostępnych oddziałów typu DepartmentDto.
+     * Zwraca listę wszystkich dostępnych oddziałów typu {@link DepartmentDto}.
+     *
      * @return zwraca listę wszystkich oddziałów.
      */
     @GetMapping("/all")
@@ -39,9 +40,10 @@ public class DepartmentController {
     }
 
     /**
-     * Zwraca obiekt typu DepartmentDto na podstawie podanego adresu id.
+     * Zwraca obiekt typu {@link DepartmentDto} na podstawie podanego adresu id.
+     *
      * @param id oddziału.
-     * @return zwraca znaleziony oddział typu DepartmentDto.
+     * @return zwraca znaleziony oddział typu {@link DepartmentDto}.
      */
     @GetMapping("/{id}")
     public DepartmentDto findDepartmentById(@PathVariable long id) {
@@ -50,8 +52,9 @@ public class DepartmentController {
 
     /**
      * Tworzy oddział.
-     * @param department obiekt typu DepartmentCreator przechowujący oddział.
-     * @return zwraca dodany oddział typu DepartmentDto.
+     *
+     * @param department obiekt typu {@link DepartmentCreator} przechowujący oddział.
+     * @return zwraca dodany oddział typu {@link DepartmentDto}.
      */
     @PostMapping("/add")
     public DepartmentDto addDepartment(@RequestBody DepartmentCreator department) {
@@ -60,9 +63,10 @@ public class DepartmentController {
 
     /**
      * Edytuje oddział o podanym id.
-     * @param id oddziału.
-     * @param department obiekt typu DepartmentCreator przechowujący oddział.
-     * @return zwraca zedytowany oddział typu DepartmentDto.
+     *
+     * @param id         oddziału.
+     * @param department obiekt typu {@link DepartmentCreator} przechowujący oddział.
+     * @return zwraca zedytowany oddział typu {@link DepartmentDto}.
      */
     @PutMapping("/update/{id}")
     public DepartmentDto updateDepartment(@PathVariable long id, @RequestBody DepartmentCreator department) {
@@ -71,6 +75,7 @@ public class DepartmentController {
 
     /**
      * Usuwa oddział szpitalu na podstawie podanego id.
+     *
      * @param id oddziału.
      */
     @DeleteMapping("/delete/{id}")

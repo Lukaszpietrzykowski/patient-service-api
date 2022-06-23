@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 /**
- * Klasa przechowująca DTO (Data Transfer Object) dla klasy UserEntity, służąca do operacji na użytkowniku.
+ * Klasa przechowująca DTO (Data Transfer Object) dla klasy {@link UserEntity}, służąca do operacji na użytkowniku.
  */
 @AllArgsConstructor
 @Builder
@@ -28,14 +28,15 @@ public class UserDto {
      */
     private String login;
     /**
-     * Zmienna typu RoleEnum przechowująca role użytkownika.
+     * Zmienna typu {@link RoleEnum} przechowująca role użytkownika.
      */
     private RoleEnum role;
 
     /**
-     * Konwertuje obiekt klasy UserEntity na obiekt klasy UserDto.
-     * @param user zmienna przechowująca użytkownika typu UserEntity który chcemy przekonwertować.
-     * @return zwraca przekonwertowanego użytkownika typu UserDto.
+     * Konwertuje obiekt klasy {@link UserEntity} na obiekt klasy {@link UserDto}.
+     *
+     * @param user zmienna przechowująca użytkownika typu {@link UserEntity} który chcemy przekonwertować.
+     * @return zwraca przekonwertowanego użytkownika typu {@link UserDto}.
      */
     public static UserDto of(UserEntity user) {
         return UserDto.builder()

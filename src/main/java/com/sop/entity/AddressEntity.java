@@ -54,9 +54,10 @@ public class AddressEntity {
     private double lng; // one chyba do wywalenia są
 
     /**
-     * Konwertuje obiekt klasy AddressCreator na obiekt klasy AddressEntity.
-     * @param address zmienna przechowujący adres typu AddressCreator który chcemy przekonwertować.
-     * @return zwraca przekonwertowany adres typu AddressEntity.
+     * Konwertuje obiekt klasy {@link AddressCreator} na obiekt klasy {@link AddressEntity}.
+     *
+     * @param address zmienna przechowujący adres typu {@link AddressCreator} który chcemy przekonwertować.
+     * @return zwraca przekonwertowany adres typu {@link AddressEntity}.
      */
     public static AddressEntity of(AddressCreator address) {
         return AddressEntity.builder()
@@ -72,8 +73,9 @@ public class AddressEntity {
 
     /**
      * Edytuję adres.
-     * @param address zmienna przechowujący adres typu AddressEntity, przekazany do edycji.
-     * @return zwraca zedytowany adres typu AddressEntity.
+     *
+     * @param address zmienna przechowujący adres typu {@link AddressEntity}, przekazany do edycji.
+     * @return zwraca zedytowany adres typu {@link AddressEntity}.
      */
     public AddressEntity updateWith(AddressEntity address) {
         return AddressEntity.builder()
@@ -88,4 +90,3 @@ public class AddressEntity {
                 .build();
     }
 }
-

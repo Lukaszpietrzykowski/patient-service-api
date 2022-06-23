@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 /**
  * Interfejs PatientRepository to interfejs pozwalający na zarządzanie danych w bazie danych
  * poprzez obiekt {@link PatientEntity}
- * używa on wbudowanych funkcjonalności z JpaRepository
+ * używa on wbudowanych funkcjonalności z {@link JpaRepository}
  *
  * @see org.springframework.data.jpa.repository.JpaRepository
  */
@@ -24,4 +24,3 @@ public interface PatientRepository extends JpaRepository<PatientEntity, Long> {
      */
     PatientEntity getPatientEntityByPesel(String pesel);
 }
-

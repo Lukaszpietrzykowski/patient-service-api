@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * Klasa przechowująca DTO (Data Transfer Object) dla klasy HospitalEntity, służaca do tworzenia szpitalu.
+ * Klasa przechowująca DTO (Data Transfer Object) dla klasy {@link com.sop.entity.HospitalEntity}, służaca do tworzenia szpitalu.
  */
 @AllArgsConstructor
 @Getter

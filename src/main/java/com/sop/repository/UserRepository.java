@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 /**
  * Interfejs UserRepository to interfejs pozwalający na zarządzanie danych w bazie danych
  * poprzez obiekt {@link UserEntity}
- * używa on wbudowanych funkcjonalności z JpaRepository
+ * używa on wbudowanych funkcjonalności z {@link JpaRepository}
  *
  * @see org.springframework.data.jpa.repository.JpaRepository
  */
@@ -24,4 +24,3 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
      */
     UserEntity findByLogin(String username);
 }
-

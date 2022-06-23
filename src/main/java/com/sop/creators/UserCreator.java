@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * Klasa przechowująca DTO (Data Transfer Object) dla klasy UserEntity, służąca do tworzenia użytkownika.
+ * Klasa przechowująca DTO (Data Transfer Object) dla klasy {@link com.sop.entity.UserEntity}, służąca do tworzenia użytkownika.
  */
 @AllArgsConstructor
 @Getter
@@ -23,7 +23,7 @@ public class UserCreator {
      */
     private String password;
     /**
-     * Zmienna typu RoleEnum przechowująca role użytkownika.
+     * Zmienna typu {@link RoleEnum} przechowująca role użytkownika.
      */
     private RoleEnum role;
 }

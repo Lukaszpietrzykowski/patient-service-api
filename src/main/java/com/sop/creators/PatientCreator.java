@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 /**
- * Klasa przechowująca DTO (Data Transfer Object) dla klasy PatientEntity, służąca do tworzenia pacjenta.
+ * Klasa przechowująca DTO (Data Transfer Object) dla klasy {@link com.sop.entity.PatientEntity}, służąca do tworzenia pacjenta.
  */
 @NoArgsConstructor
 @AllArgsConstructor
@@ -29,19 +29,19 @@ public class PatientCreator {
      */
     private String pesel;
     /**
-     * Zmienna typu LocalDateTime przechowująca datę urodzenia pacjenta.
+     * Zmienna typu {@link LocalDateTime} przechowująca datę urodzenia pacjenta.
      */
     private LocalDateTime birthDate;
     /**
-     * Zmienna typu GenderEnum przechowująca płeć pacjenta.
+     * Zmienna typu {@link GenderEnum} przechowująca płeć pacjenta.
      */
     private GenderEnum gender;
     /**
-     * Zmienna typu PriorityEnum przechowująca priorytet dla pacjenta.
+     * Zmienna typu {@link PriorityEnum} przechowująca priorytet dla pacjenta.
      */
     private PriorityEnum priority;
     /**
-     * Zmienna typu LocalDateTime przechowująca datę rejestracji pacjenta.
+     * Zmienna typu {@link LocalDateTime} przechowująca datę rejestracji pacjenta.
      */
     private LocalDateTime registrationDate;
     /**
@@ -52,5 +52,4 @@ public class PatientCreator {
      * Zmienna typu Long przechowująca id oddziału do którego przypisany jest pacjent.
      */
     private Long departmentId;
-
 }

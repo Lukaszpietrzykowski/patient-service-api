@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 /**
- * Klasa przechowująca DTO (Data Transfer Object) dla klasy AddressEntity, służąca do operacji na adresie.
+ * Klasa przechowująca DTO (Data Transfer Object) dla klasy {@link AddressEntity}, służąca do operacji na adresie.
  */
 @AllArgsConstructor
 @Getter
@@ -38,9 +38,10 @@ public class AddressDto {
     private String country;
 
     /**
-     * Konwertuje obiekt klasy AddressEntity na obiekt klasy AddressDto.
-     * @param address zmienna przechowujący adres typu AddressEntity który chcemy przekonwertować.
-     * @return zwraca przekonwertowany adres typu AddressDtos.
+     * Konwertuje obiekt klasy {@link AddressEntity} na obiekt klasy {@link AddressDto}.
+     *
+     * @param address zmienna przechowujący adres typu {@link AddressEntity} który chcemy przekonwertować.
+     * @return zwraca przekonwertowany adres typu {@link AddressDto}.
      */
     public static AddressDto of(AddressEntity address) {
         return AddressDto.builder()
@@ -53,5 +54,3 @@ public class AddressDto {
                 .build();
     }
 }
-
-

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * Klasa UserController to klasa zawierająca funkcjonalności wykorzystywane
+ * Klasa AddressController to klasa zawierająca funkcjonalności wykorzystywane
  * w tworzeniu REST API umożliwijąca wszelkie operacje związane z adresem szpitala.
  */
 @RestController
@@ -26,12 +26,13 @@ public class AddressController {
 
 
     /**
-     * Przechowuję obiekt typu AdressService.
+     * Przechowuję obiekt typu {@link AddressService}.
      */
     private final AddressService addressService;
 
     /**
-     * Zwraca listę wszystkich dostępnych adresów szpitali typu AddressDto.
+     * Zwraca listę wszystkich dostępnych adresów szpitali typu {@link AddressDto}.
+     *
      * @return zwraca listę wszystkich adresów.
      */
     @GetMapping("/all")
@@ -40,9 +41,10 @@ public class AddressController {
     }
 
     /**
-     * Zwraca obiekt typu AddressDto na podstawie podanego id.
+     * Zwraca obiekt typu {@link AddressDto} na podstawie podanego id.
+     *
      * @param id adresu.
-     * @return Zwraca adres typu AdressDto na podstawie podanego id.
+     * @return Zwraca adres typu {@link AddressDto} na podstawie podanego id.
      */
     @GetMapping("/{id}")
     public AddressDto getAddress(@PathVariable long id) {
@@ -51,8 +53,9 @@ public class AddressController {
 
     /**
      * Tworzy adres szpitala.
-     * @param address  obiekt typu AddressCreator przechowujący adres szpitalu
-     * @return zwraca utworzony adres typu AdressDto.
+     *
+     * @param address obiekt typu {@link AddressCreator} przechowujący adres szpitalu
+     * @return zwraca utworzony adres typu {@link AddressDto}.
      */
     @PostMapping("/add")
     public AddressDto createAddress(@RequestBody AddressCreator address) {
@@ -61,9 +64,10 @@ public class AddressController {
 
     /**
      * Edytuje adres szpitala o podanym id.
-     * @param id adresu szpitalu.
-     * @param address obiekt typu AddressCreator przechowujący adres szpitalu
-     * @return zwraca zedytowany adres typu AdressDto
+     *
+     * @param id      adresu szpitalu.
+     * @param address obiekt typu {@link AddressCreator} przechowujący adres szpitalu
+     * @return zwraca zedytowany adres typu {@link AddressDto}
      */
     @PutMapping("/update/{id}")
     public AddressDto updateAddress(@PathVariable long id, @RequestBody AddressCreator address) {
@@ -72,6 +76,7 @@ public class AddressController {
 
     /**
      * Usuwa podany adres szpitalu na podstawie podanego id.
+     *
      * @param id adresu.
      */
     @DeleteMapping("/delete/{id}")

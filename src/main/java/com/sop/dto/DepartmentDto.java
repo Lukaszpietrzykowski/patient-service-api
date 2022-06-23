@@ -8,7 +8,7 @@ import lombok.Getter;
 import java.util.List;
 
 /**
- * Klasa przechowująca DTO (Data Transfer Object) dla klasy DepartmentEntity, służąca do operacji na oddziale.
+ * Klasa przechowująca DTO (Data Transfer Object) dla klasy {@link DepartmentEntity}, służąca do operacji na oddziale.
  */
 @AllArgsConstructor
 @Builder
@@ -23,7 +23,7 @@ public class DepartmentDto {
      */
     private String name;
     /**
-     * Zmienna przchowująca listę pacjentów typu PatientDto.
+     * Zmienna przchowująca listę pacjentów typu {@link PatientDto}.
      */
     private List<PatientDto> patents;
     /**
@@ -32,9 +32,10 @@ public class DepartmentDto {
     private long availableBeds;
 
     /**
-     * Metoda konwertuje obiekt klasy DepartmentEntity na obiekt klasy DepartmentDto
-     * @param department obiekt przechowujący oddział typu DepartmentEntity który chcemy prekonwertować
-     * @return zwraca przekonwertowany oddział typu DepartmentDto
+     * Metoda konwertuje obiekt klasy {@link DepartmentEntity} na obiekt klasy {@link DepartmentDto}
+     *
+     * @param department obiekt przechowujący oddział typu {@link DepartmentEntity} który chcemy prekonwertować
+     * @return zwraca przekonwertowany oddział typu {@link DepartmentDto}
      */
     public static DepartmentDto of(DepartmentEntity department) {
         return DepartmentDto.builder()
@@ -46,7 +47,7 @@ public class DepartmentDto {
     }
 
     /**
-     * Wewnętrzne DTO (Data Transfer Object) dla klasy DepartmentDto, służąca do operacji na oddziale.
+     * Wewnętrzne DTO (Data Transfer Object) dla klasy {@link DepartmentDto}, służąca do operacji na oddziale.
      */
     @AllArgsConstructor
     @Builder
@@ -70,9 +71,10 @@ public class DepartmentDto {
         private long remainingBeds;
 
         /**
-         * Konwertuje obiekt klasy DepartmentEntity na obiekt klasy DepartmentDtoShort.
-         * @param department zmienna przechowujący oddział typu DepartmentEntity który chcemy przekonwertować.
-         * @return zwraca przekonwertowany oddział typu AddressDepartmentDtoShort.
+         * Konwertuje obiekt klasy {@link DepartmentEntity} na obiekt klasy {@link DepartmentDtoShort}.
+         *
+         * @param department zmienna przechowujący oddział typu {@link DepartmentEntity} który chcemy przekonwertować.
+         * @return zwraca przekonwertowany oddział typu {@link DepartmentDtoShort}.
          */
         public static DepartmentDtoShort of(DepartmentEntity department) {
             return DepartmentDtoShort.builder().
@@ -85,7 +87,8 @@ public class DepartmentDto {
 
         /**
          * Zwraca ilość wolnych łóżek w danym oddziale.
-         * @param department zmienna przechowujący oddział typu DepartmentEntity
+         *
+         * @param department zmienna przechowujący oddział typu {@link DepartmentEntity}
          * @return Zwraca ilość wolnych łóżek w danym oddziale.
          */
         private static long getRemainingBeds(DepartmentEntity department) {
@@ -94,7 +97,8 @@ public class DepartmentDto {
 
         /**
          * Zwraca listę oddziałów w którym są dostępne łóżka.
-         * @param departments lista przechowująca oddziały typu DepartmentEntity.
+         *
+         * @param departments lista przechowująca oddziały typu {@link DepartmentEntity}.
          * @return Zwraca listę oddziałów w którym są dostępne łóżka.
          */
         public static List<DepartmentDtoShort> listOf(List<DepartmentEntity> departments) {
@@ -106,7 +110,8 @@ public class DepartmentDto {
 
         /**
          * Zwraca listę oddziałów bez względu na dostępne łóżka.
-         * @param departments lista przechowująca oddziały typu DepartmentEntity.
+         *
+         * @param departments lista przechowująca oddziały typu {@link DepartmentEntity}.
          * @return Zwraca listę oddziałów bez względu na dostępne łóżka.
          */
         public static List<DepartmentDtoShort> listOfWithDetails(List<DepartmentEntity> departments) {

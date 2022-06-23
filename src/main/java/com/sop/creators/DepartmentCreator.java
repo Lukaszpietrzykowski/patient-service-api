@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * Klasa przechowująca DTO (Data Transfer Object) dla klasy DepartmentEntity, służąca do tworzenia oddziału.
+ * Klasa przechowująca DTO (Data Transfer Object) dla klasy {@link com.sop.entity.DepartmentEntity}, służąca do tworzenia oddziału.
  */
 @AllArgsConstructor
 @Getter

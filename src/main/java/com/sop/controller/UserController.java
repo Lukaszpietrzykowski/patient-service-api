@@ -26,12 +26,13 @@ import java.util.List;
 public class UserController {
 
     /**
-     * Przechowuję obiekt typu UserService.
+     * Przechowuję obiekt typu {@link UserService}.
      */
     private final UserService userService;
 
     /**
-     * Zwraca listę wszystkich dostępnych użytkowników typu UserDto.
+     * Zwraca listę wszystkich dostępnych użytkowników typu {@link UserDto}.
+     *
      * @return zwraca listę wszystkich użytkowników.
      */
     @GetMapping("/all")
@@ -40,9 +41,10 @@ public class UserController {
     }
 
     /**
-     * Zwraca użytkownika typu UserDto na podstawie adres id.
+     * Zwraca użytkownika typu {@link UserDto} na podstawie adres id.
+     *
      * @param id użytkownika.
-     * @return zwraca znalezionego użytkownika typu UserDto.
+     * @return zwraca znalezionego użytkownika typu {@link UserDto}.
      */
     @GetMapping("/{id}")
     public UserDto getUser(@PathVariable long id) {
@@ -50,9 +52,10 @@ public class UserController {
     }
 
     /**
-     * Zwraca użytkownika typu UserDto na podstawie podanego loginu.
+     * Zwraca użytkownika typu {@link UserDto} na podstawie podanego loginu.
+     *
      * @param login użytkownika.
-     * @return zwraca znalezionego użytkownika typu UserDto.
+     * @return zwraca znalezionego użytkownika typu {@link UserDto}.
      */
     @GetMapping("/details")
     public UserDto getUserByUsername(@RequestParam String login) {
@@ -61,8 +64,9 @@ public class UserController {
 
     /**
      * Tworzy użytkownika.
-     * @param user obiekt typu UserCreator przechowujący użytkownika.
-     * @return zwraca dodanego użytkownika typu UserDto.
+     *
+     * @param user obiekt typu {@link UserCreator} przechowujący użytkownika.
+     * @return zwraca dodanego użytkownika typu {@link UserDto}.
      */
     @PostMapping("/add")
     public UserDto createUser(@RequestBody UserCreator user) {
@@ -71,9 +75,10 @@ public class UserController {
 
     /**
      * Edytuje użytkownika o podanym id.
-     * @param id użytkownika.
-     * @param user obiekt typu UserCreator przechowujący użytkownika.
-     * @return zwraca zedytowanego użytkownika typu UserDto.
+     *
+     * @param id   użytkownika.
+     * @param user obiekt typu {@link UserCreator} przechowujący użytkownika.
+     * @return zwraca zedytowanego użytkownika typu {@link UserDto}.
      */
     @PutMapping("/update/{id}")
     public UserDto updateUser(@PathVariable long id, @RequestBody UserCreator user) {
@@ -82,6 +87,7 @@ public class UserController {
 
     /**
      * Usuwa użytkownika na podstawie podanego id.
+     *
      * @param id użytkownika.
      */
     @DeleteMapping("/delete/{id}")

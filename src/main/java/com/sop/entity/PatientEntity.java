@@ -55,33 +55,33 @@ public class PatientEntity {
      */
     private long age;
     /**
-     * Zmienna typu LocalDateTime przechowująca datę urodzenia pacjenta.
+     * Zmienna typu {@link LocalDateTime} przechowująca datę urodzenia pacjenta.
      */
     private LocalDateTime birthDate;
 
     /**
-     * Zmienna typu GenderEnum przechowująca płeć pacjenta.
+     * Zmienna typu {@link GenderEnum} przechowująca płeć pacjenta.
      */
     @Enumerated(EnumType.STRING)
     private GenderEnum gender;
 
     /**
-     * Zmienna typu PriorityEnum przechowująca priorytet pacjenta.
+     * Zmienna typu {@link PriorityEnum} przechowująca priorytet pacjenta.
      */
     @Enumerated(EnumType.STRING)
     private PriorityEnum priority;
 
     /**
-     * Zmienna typu LocalDateTime przechowująca datę wypisania pacjenta.
+     * Zmienna typu {@link LocalDateTime} przechowująca datę wypisania pacjenta.
      */
     private LocalDateTime dischargeDate;
     /**
-     * Zmienna typu LocalDateTime przechowująca datę rejestracji pacjenta.
+     * Zmienna typu {@link LocalDateTime} przechowująca datę rejestracji pacjenta.
      */
     private LocalDateTime registrationDate;
 
     /**
-     * Zmienna typu DepartmentEntity przechowująca oddział w którym znajduję się pacjent.
+     * Zmienna typu {@link DepartmentEntity} przechowująca oddział w którym znajduję się pacjent.
      */
     @ManyToOne
     @JoinColumn(name = "department_id")
@@ -94,8 +94,9 @@ public class PatientEntity {
 
     /**
      * Edytuje pacjenta.
-     * @param patient zmienna przechowujący pacjenta typu PatientEntity, przekazany do edycji.
-     * @return zwraca zedytowanego pacjenta typu PatientEntity.
+     *
+     * @param patient zmienna przechowujący pacjenta typu {@link PatientEntity}, przekazany do edycji.
+     * @return zwraca zedytowanego pacjenta typu {@link PatientEntity}.
      */
     public PatientEntity updateWith(PatientEntity patient) {
         patient.setId(this.getId());
@@ -103,10 +104,11 @@ public class PatientEntity {
     }
 
     /**
-     * Konwertuje obiekt klasy PatientCreator na obiekt klasy PatientEntity.
-     * @param patient zmienna przechowująca pacjenta typu PatientCreator który chcemy przekonwertować.
+     * Konwertuje obiekt klasy {@link PatientCreator} na obiekt klasy {@link PatientEntity}.
+     *
+     * @param patient          zmienna przechowująca pacjenta typu {@link PatientCreator} który chcemy przekonwertować.
      * @param registrationDate data rejestracji pacjenta.
-     * @return zwraca przekonwertowanego pacjenta typu PatientEntity.
+     * @return zwraca przekonwertowanego pacjenta typu {@link PatientEntity}.
      */
     public static PatientEntity of(PatientCreator patient, LocalDateTime registrationDate) {
         return PatientEntity.builder()
@@ -121,5 +123,4 @@ public class PatientEntity {
                 .registrationDate(registrationDate)
                 .build();
     }
-
 }
