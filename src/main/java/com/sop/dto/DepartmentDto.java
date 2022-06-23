@@ -92,7 +92,10 @@ public class DepartmentDto {
          * @return Zwraca ilość wolnych łóżek w danym oddziale.
          */
         private static long getRemainingBeds(DepartmentEntity department) {
-            return department.getAvailableBeds() - department.getPatients().size();
+            int beds = department.getPatients().stream()
+                    .filter(patient -> patient.getDischargeDate() != null)
+                    .toList().size();
+            return department.getAvailableBeds() - beds;
         }
 
         /**
