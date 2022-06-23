@@ -32,7 +32,7 @@ public class PatientController {
         return patientService.getPatient(id);
     }
 
-    @GetMapping("/archived/all")
+    @GetMapping("/admin/archived/all/")
     public List<PatientDto> getArchivedPatients() {
         return patientService.getArchivedPatients();
     }
