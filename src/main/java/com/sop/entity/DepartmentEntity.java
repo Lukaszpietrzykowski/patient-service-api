@@ -19,6 +19,9 @@ import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Klasa reprezentująca oddziały (obiekty/rekordy) znajdujące się w bazie danych.
+ */
 @Entity
 @Table(name = "DEPARTMENT")
 @AllArgsConstructor
@@ -28,20 +31,40 @@ import java.util.List;
 @Builder
 public class DepartmentEntity {
 
+    /**
+     * Zmienna typu long przechowująca id oddziału.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    /**
+     * Zmienna typu String przechowująca nazwę oddziału.
+     */
     private String name;
 
+    /**
+     * Zmienna przechowująca listę pacjentów typu {@link PatientEntity}.
+     */
     @OneToMany(mappedBy = "department", cascade = CascadeType.REMOVE)
     private List<PatientEntity> patients = new ArrayList<>();
 
+    /**
+     * Zmienna typu {@link HospitalEntity} przechowująca szpital.
+     */
     @ManyToOne
     @JoinColumn(name = "hospital_id")
     private HospitalEntity hospital;
-
+    /**
+     * Zmienna typu long przechowująca liczbę wszystkich łóżek w oddziale.
+     */
     private long availableBeds;
 
+    /**
+     * Konwertuje obiekt klasy {@link DepartmentCreator} na obiekt klasy {@link DepartmentEntity}.
+     *
+     * @param department zmienna przechowujący oddział typu {@link DepartmentCreator} który chcemy przekonwertować.
+     * @return zwraca przekonwertowany oddział typu {@link DepartmentEntity}.
+     */
     public static DepartmentEntity of(DepartmentCreator department) {
         return DepartmentEntity.builder()
                 .name(department.getName())
@@ -50,6 +73,12 @@ public class DepartmentEntity {
                 .build();
     }
 
+    /**
+     * Edytuje oddział.
+     *
+     * @param department zmienna przechowujący oddział typu {@link DepartmentEntity}, przekazany do edycji.
+     * @return zwraca zedytowany oddział typu {@link DepartmentEntity}.
+     */
     public DepartmentEntity updateWith(DepartmentEntity department) {
         return DepartmentEntity.builder()
                 .id(this.id)
