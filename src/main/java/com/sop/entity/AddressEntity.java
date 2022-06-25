@@ -50,8 +50,8 @@ public class AddressEntity {
      * Zmienna typu String przechowująca nazwę kraju.
      */
     private String country;
-    private double lat; // one chyba do wywalenia są
-    private double lng; // one chyba do wywalenia są
+    private double lat;
+    private double lng;
 
     /**
      * Konwertuje obiekt klasy {@link AddressCreator} na obiekt klasy {@link AddressEntity}.
