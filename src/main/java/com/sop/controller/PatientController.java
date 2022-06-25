@@ -50,6 +50,11 @@ public class PatientController {
         return patientService.getPatient(id);
     }
 
+    @GetMapping("/archived/all")
+    public List<PatientDto> getArchivedPatients() {
+        return patientService.getArchivedPatients();
+    }
+
     /**
      * Tworzy pacjenta.
      *

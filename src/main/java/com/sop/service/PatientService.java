@@ -99,7 +99,7 @@ public class PatientService {
      */
     public void createPatient(PatientCreator patient) {
         PatientEntity patientEntityByPesel = null;
-        if (Objects.nonNull(patient.getPesel())) {
+        if (Objects.nonNull(patient.getPesel()) && !patient.getPesel().isEmpty()) {
             patientEntityByPesel = patientRepository.getPatientEntityByPesel(patient.getPesel());
         }
         if (Objects.nonNull(patientEntityByPesel)) {
@@ -107,7 +107,7 @@ public class PatientService {
             patientRepository.save(patientEntityByPesel);
         } else {
             DepartmentEntity department = departmentRepository.getById(patient.getDepartmentId());
-            PatientEntity patientEntity = PatientEntity.of(patient, LocalDateTime.now());
+            PatientEntity patientEntity = PatientEntity.of(patient, LocalDateTime.now().plusHours(2));
             patientEntity.setDepartment(department);
             patientRepository.save(patientEntity);
         }
@@ -135,6 +135,7 @@ public class PatientService {
                 .map(oldPatient -> {
                     PatientEntity updatedPatient = oldPatient.updateWith(PatientEntity.of(patient, patient.getRegistrationDate()));
                     updatedPatient.setDepartment(departmentEntity);
+                    updatedPatient.setMedicalHistory(oldPatient.getMedicalHistory());
                     return patientRepository.save(updatedPatient);
                 })
                 .orElseThrow(() -> new RuntimeException("Patient doesn't exist"));
@@ -148,7 +149,7 @@ public class PatientService {
     public void deletePatient(long id) {
         patientRepository.findById(id)
                 .map(patientObject -> {
-                    patientObject.setDischargeDate(LocalDateTime.now());
+                    patientObject.setDischargeDate(LocalDateTime.now().plusHours(2));
                     return patientRepository.save(patientObject);
                 })
                 .orElseThrow(() -> new RuntimeException("Patient doesn't exist"));

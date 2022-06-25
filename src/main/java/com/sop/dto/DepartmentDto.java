@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Klasa przechowująca DTO (Data Transfer Object) dla klasy {@link DepartmentEntity}, służąca do operacji na oddziale.
@@ -92,7 +93,10 @@ public class DepartmentDto {
          * @return Zwraca ilość wolnych łóżek w danym oddziale.
          */
         private static long getRemainingBeds(DepartmentEntity department) {
-            return department.getAvailableBeds() - department.getPatients().size();
+            int beds = department.getPatients().stream()
+                    .filter(patient -> Objects.isNull(patient.getDischargeDate()))
+                    .toList().size();
+            return department.getAvailableBeds() - beds;
         }
 
         /**
