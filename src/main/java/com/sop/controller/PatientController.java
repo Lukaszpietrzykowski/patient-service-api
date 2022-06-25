@@ -50,6 +50,11 @@ public class PatientController {
         return patientService.getPatient(id);
     }
 
+    /**
+     * Zwrca listę wszystkich pacjentów po wypisaniu ze szpitala
+     *
+     * @return zwrca listę obiektów typu {@link PatientDto} wszystkich pacjentów po wypisaniu ze szpitala
+     */
     @GetMapping("/archived/all")
     public List<PatientDto> getArchivedPatients() {
         return patientService.getArchivedPatients();
